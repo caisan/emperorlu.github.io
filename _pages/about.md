@@ -20,7 +20,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * Object storage: [Ceph](https://github.com/emperorlu/ceph)
 * AI for storage: [Learned-index](https://github.com/emperorlu/Learned-Rocksdb)
 * system for AI: [FlashNeuron](https://github.com/emperorlu/FlashNeuron)
-* NVM: [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
+* non-volatile memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
 * [projects](2_project.md)
 
 ## Education
