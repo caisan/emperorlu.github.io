@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-This is Kai Lu\'s personal website, including personal introduction, projects and blogs. If you have any questions, please let me know.
+This is Kai Lu\'s personal website, including personal introduction, my projects, blogs and some records of my life. If you have any questions, please let me know.
 
 ## About Me
 
