@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Projects
+title: Projects and Files
 permalink: /project/
 icon: glyphicon-cog
 type: page
@@ -8,6 +8,8 @@ type: page
 
 * content
 {:toc}
+
+{% include base_path %}
 
 Projects and Files
 
