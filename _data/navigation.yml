@@ -2,7 +2,7 @@
 main:
 
   - title: "Tags"
-    url: /categories/
+    url: /tags/
 
   - title: "Blogs"
     url: /year-archive/
