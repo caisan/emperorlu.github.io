@@ -24,13 +24,10 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * [projects](2_project.md)
 
 ## Education
-| Degree | Major | Time | School |
-|:--------|:-------:|:-------:|:--------:|
-|----
-| Ph.D candidate | Computer Science and Technology | 2018- |Wuhan National Laboratory for Optoelectronics(WNLO), Huazhong University of Science and Technology|
-|----
-| B.E degree | Computer Science and Technology | 2014-2018 | Huazhong University of Science and Technology|
-{: rules="all"}
+
+* Ph.D. candidate in Storage Systems and Techniques, Wuhan National Laboratory for Optoelectronics(WNLO), Huazhong University of Science and Technology, China, 2018-now
+
+* B.E degree in Computer Science and Technology, Huazhong University of Science and Technology, China, 2014-2018
 
 ## Publications
 
