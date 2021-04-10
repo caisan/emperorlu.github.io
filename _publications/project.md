@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects and Files
-permalink: /project/
+# permalink: /project/
 icon: glyphicon-cog
 type: page
 ---
