@@ -5,10 +5,7 @@ tags:
   - projects
 ---
 
-* content
-{:toc}
 
-{% include base_path %}
 
 Projects and Files
 
