@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: publications
 title: Projects and Files
 # permalink: /project/
 icon: glyphicon-cog
