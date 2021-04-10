@@ -2,10 +2,10 @@
 main:
 
   - title: "Tags"
-    url: /year-archive/
+    url: /collection-archive/
 
   - title: "Blogs"
-    url: /year-archive
+    url: /year-archive/
 
   - title: "Projects"
     url: /publications/
