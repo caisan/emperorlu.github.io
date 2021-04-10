@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Welcome to Kai Lu'personal websites!"
+title: "Welcome to Emperorlu'personal websites!"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -24,19 +24,12 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * [projects](2_project.md)
 
 ## Education
-<table>
-    <tr align="center">
-        <td >2018.06 --- now</td>  
-        <td > Ph.D candidate</td>
-        <td > Wuhan National Laboratory for Optoelectronics(WNLO), 
-        Huazhong University of Science and Technology(HUST)</td>	
-    </tr>
-    <tr align="center">
-	    <td>2014.09 --- 2018.06</td>
-	    <td > B.E degree</td>
-        <td > Huazhong University of Science and Technology</td>
-	</tr>
-</table>
+| Degree | Major | Time | School |
+|:--------|:-------:|:-------:|:--------:|
+|----
+| Ph.D candidate | Computer Science and Technology | 2018- |Wuhan National Laboratory for Optoelectronics(WNLO), Huazhong University of Science and Technology|
+|----
+| B.E degree | Computer Science and Technology | 2014-2018 | Huazhong University of Science and Technology|
 
 ## Publications
 
