@@ -1,9 +1,8 @@
 ---
-layout: publications
 title: Projects and Files
 # permalink: /project/
-icon: glyphicon-cog
-type: page
+tags:
+  - projects
 ---
 
 * content
