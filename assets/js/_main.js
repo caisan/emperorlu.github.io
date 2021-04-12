@@ -51,7 +51,13 @@ $(document).ready(function(){
   });
 
   // Back to top
-
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 100) {
+        $("#back-top").fadeIn(500);
+    } else {
+        $("#back-top").fadeOut(500);
+    }
+  });
   $("#back-top").hide();
   $(document).ready(function () {
     $(window).scroll(function () {
