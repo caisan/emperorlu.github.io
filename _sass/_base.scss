@@ -5,6 +5,9 @@ html {
   /* sticky footer fix */
   position: relative;
   min-height: 100%;
+  width: 100%;
+  height:auto;
+  overflow-x: hidden;
 }
 
 body {
