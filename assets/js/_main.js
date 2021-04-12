@@ -55,10 +55,10 @@ $(document).ready(function(){
 
   // $(document).ready(function () {
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 200) {
-      $('#back-top').fadeIn(500);
+    if ($(this).scrollTop() > 100) {
+      $("#back-top").fadeIn(500);
     } else {
-      $('#back-top').fadeOut(500);
+      $("#back-top").fadeOut(500);
     }
   });
   $('#back-top a').click(function () {
