@@ -43,13 +43,14 @@
 #back-top {
     position: fixed;
     bottom: 30px;
+    right: 0%;
     margin-left: 1040px;
   }
   #back-top a {
-    width: 54px;
-    height: 54px;
+    width: 24px;
+    height: 24px;
     display: block;
-    background: #ddd url(../../images/site-logo.png) no-repeat center center;
+    background: #ddd url(../../images/bg_up_arrow.png) no-repeat center center;
     background-color: #aaa;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
