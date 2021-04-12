@@ -1,6 +1,7 @@
 /* ==========================================================================
    jQuery plugin settings and other scripts
    ========================================================================== */
+$("#back-top").hide();
 
 $(document).ready(function(){
    // Sticky footer
@@ -51,22 +52,22 @@ $(document).ready(function(){
   });
 
   // Back to top
-  $("#back-top").hide();
-  $(document).ready(function () {
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 100) {
-        $('#back-top').fadeIn(500);
-      } else {
-        $('#back-top').fadeOut(500);
-      }
-    });
-    $('#back-top a').click(function () {
-      $('body,html').animate({
-        scrollTop: 0
-      }, 800);
-      return false;
-    });
+
+  // $(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn(500);
+    } else {
+      $('#back-top').fadeOut(500);
+    }
   });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+  // });
 
   // Follow menu drop down
 
