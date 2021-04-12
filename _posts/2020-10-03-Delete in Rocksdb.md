@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "RocksDB-删除机制研究"
-author: "Kai Lu"
-categories: KV_Storage
+tags: 
+  - KV_Storage
 ---
 
 本文主要介绍RocksDB的删除机制和优化策略分析。

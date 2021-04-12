@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "Ceph-Crush算法和MapX"
-author: "Kai Lu"
-categories: Object_Storage
+tags: 
+  - Object_Storage
 ---
 
 本文总结MapX论文和Ceph Crush算法。

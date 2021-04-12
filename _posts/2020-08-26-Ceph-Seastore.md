@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "Ceph-Seastore"
-author: "Kai Lu"
-categories: Object_Storage
+tags: 
+  - Object_Storage
 ---
 
 本文总结Ceph最新的Seastore。

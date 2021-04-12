@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "Ceph-Bluestore代码分析"
-author: "Kai Lu"
-categories: Object_Storage
+tags: 
+  - Object_Storage
 ---
 
 本文总结Ceph-Bluestore代码分析。

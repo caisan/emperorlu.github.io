@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "Learned index-调研和分析"
-author: "Kai Lu"
-categories: AI_for_Storage
+tags: 
+  - AI_for_Storage
 ---
 
 本文主要介绍Learned index，详细的调研和使用分析。

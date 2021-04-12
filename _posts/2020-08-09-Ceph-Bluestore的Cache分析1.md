@@ -1,8 +1,7 @@
 ---
-layout: post
 title:  "Ceph-Bluestore的Cache分析一"
-author: "Kai Lu"
-categories: Object_Storage
+tags: 
+  - Object_Storage
 ---
 
 本文总结Ceph-Bluestore的Cache分析，进一步了解见[代码详解](2020-08-12-Ceph-Bluestore的Cache分析2.md)
