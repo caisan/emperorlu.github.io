@@ -55,7 +55,7 @@ $(document).ready(function(){
 
   // $(document).ready(function () {
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
+    if ($(this).scrollTop() > 200) {
       $('#back-top').fadeIn(500);
     } else {
       $('#back-top').fadeOut(500);
