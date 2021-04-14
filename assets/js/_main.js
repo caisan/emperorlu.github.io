@@ -61,12 +61,12 @@ $(document).ready(function(){
       $("#back-top").fadeOut(200);
     }
   });
-  $('#back-top a').click(function () {
-    $('body,html').animate({
-      scrollTop: 0
-    }, 800);
-    return false;
-  });
+  // $('#back-top a').click(function () {
+  //   $('body,html').animate({
+  //     scrollTop: 0
+  //   }, 800);
+  //   return false;
+  // });
   // });
 
   // Follow menu drop down
