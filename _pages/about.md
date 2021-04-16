@@ -40,5 +40,5 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Contact
 
-* Email: emperorlu@hust.edu.cn
+* Email: <emperorlu@hust.edu.cn>
 * Github: [emperorlu](https://github.com/emperorlu)
