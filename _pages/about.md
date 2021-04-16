@@ -16,9 +16,9 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Interests and Projects
 
-* Key-value store: [Rocksdb](https://github.com/emperorlu/rocksdb), [TiKV](https://github.com/emperorlu/tikv), [leveldb](https://github.com/emperorlu/leveldb)
+* Key-value store: [Rocksdb](https://github.com/emperorlu/rocksdb), [TiKV](https://github.com/emperorlu/tikv), [Leveldb](https://github.com/emperorlu/leveldb)
 * Object storage: [Ceph](https://github.com/emperorlu/ceph)
-* AI for storage: [Learned-index](https://github.com/emperorlu/Learned-Rocksdb)
+* AI for storage: [Learned-Rocksdb](https://github.com/emperorlu/Learned-Rocksdb)
 * system for AI: [FlashNeuron](https://github.com/emperorlu/FlashNeuron)
 * non-volatile memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
 * [projects](../_posts/2021-01-01-project.md)
