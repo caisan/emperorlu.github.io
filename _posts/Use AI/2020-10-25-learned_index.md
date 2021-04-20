@@ -4,6 +4,8 @@ tags:
   - AI_for_Storage
 ---
 
+{% include toc %}
+
 本文主要介绍Learned index，详细的调研和使用分析。
 
 *天上冷飕飕，地上滚绣球；有陷是包子，没陷是窝头 — 郭儿*
