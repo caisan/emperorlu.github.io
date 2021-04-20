@@ -7,6 +7,7 @@
 
 # Site Settings
 # locale                   : "en-US"
+locale                   : "zh-CN"
 title                    : "Emperorlu's Site"
 title_separator          : "-"
 name                     : &name "Kai Lu"
