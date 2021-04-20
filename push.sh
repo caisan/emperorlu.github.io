@@ -1,4 +1,4 @@
 git add .
-git commit -m "add blog"
+git commit -m "change posts"
 git push
 
