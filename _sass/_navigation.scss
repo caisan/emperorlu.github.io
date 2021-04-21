@@ -376,7 +376,7 @@
   letter-spacing: 1px;
   background-color: #fff;
   border: 1px solid $border-color;
-  border-radius: $border-radius;
+  border-radius: 50%;
   box-shadow: $box-shadow;
 
   .nav__title {
@@ -384,7 +384,7 @@
     font-size: $type-size-6;
     background: $primary-color;
     border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-top-right-radius: 50%;
   }
 }
 
