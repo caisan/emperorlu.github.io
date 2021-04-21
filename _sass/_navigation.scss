@@ -394,6 +394,8 @@
   width: 100%;
   list-style: none;
   font-size: 0.8rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 90px - 2em);
   
   a {
     display: block;
@@ -417,7 +419,7 @@
   }
 
   li ul > li a {
-    padding-left: 2rem;
+    padding-left: 1.75rem;
     font-weight: normal;
   }
 
