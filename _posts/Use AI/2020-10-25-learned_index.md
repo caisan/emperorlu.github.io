@@ -1,6 +1,5 @@
 ---
 title:  "Learned index-调研和分析"
-layout: post
 tags: 
   - AI_for_Storage
 ---
