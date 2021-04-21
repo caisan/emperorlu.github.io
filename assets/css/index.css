@@ -88,6 +88,8 @@
 }
 
 .list-group-item {
+    text-decoration: none;
+    color: #4183c4;
     position: relative;
     display: block;
     padding: 5px 15px;
