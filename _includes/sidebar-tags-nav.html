@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/assets/css/index.css">
 <h3 align="center">Blog Tags</h3>
 <div id="blog-tags">
-	<ul class="list-group">
+	<ul class="list-group sticky">
 		{% assign sorted_tags = site.tags | sort %}
 		{% for category in sorted_tags %}
 		<li class="list-group-item">
