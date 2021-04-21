@@ -11,7 +11,7 @@ permalink: /tags/
 {% include sidebar.html %}
 <section class="container content">
     <div class="columns">
-        <div class="column two-fourths">
+        <div class="column comment-position">
             <article class="article-content markdown-body">
                 <section class="container posts-content">
                     {% assign sorted_tags = site.tags | sort %}
@@ -29,7 +29,7 @@ permalink: /tags/
                 <!-- /section.content -->
             </article>
         </div>
-        <div class="column one-fourth">
+        <div class="column list-position">
             {% include sidebar-tags-nav.html %}
         </div>
     </div>
