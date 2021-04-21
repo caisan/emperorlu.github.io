@@ -21,7 +21,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * AI for storage: [Learned-Rocksdb](https://github.com/emperorlu/Learned-Rocksdb)
 * system for AI: [FlashNeuron](https://github.com/emperorlu/FlashNeuron)
 * non-volatile memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
-* [My projects](../_posts/2021-01-01-project.md)
+* [My projects](../_posts/Projects/2021-01-01-project.md)
 * [My hobbies](../_posts/2021-02-01-兴趣爱好.md)
 
 ## Education
