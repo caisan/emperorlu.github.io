@@ -64,6 +64,7 @@
 }
 
 .posts-list-item a {
+    text-decoration: none;
     font-size: 20px;
     font-weight: normal;
     font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -85,6 +86,7 @@
 }
 
 .list-group-item {
+    text-decoration: none;
     position: relative;
     display: block;
     padding: 10px 15px;
