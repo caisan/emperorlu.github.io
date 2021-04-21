@@ -115,15 +115,13 @@
 }
 
 .badge {
-    text-decoration: none;
-    color: #4183c4;
     display: inline-block;
     min-width: 10px;
     padding: 3px 7px;
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
-    /* color: #fff; */
+    color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
