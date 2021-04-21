@@ -376,7 +376,7 @@
   letter-spacing: 1px;
   background-color: #fff;
   border: 1px solid $border-color;
-  border-radius: 50%;
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
 
   .nav__title {
@@ -384,17 +384,17 @@
     font-size: $type-size-6;
     background: $primary-color;
     border-top-left-radius: $border-radius;
-    border-top-right-radius: 50%;
+    border-top-right-radius: $border-radius;
   }
 }
 
 .toc__menu {
   margin: 0;
-  padding: 1em;
+  padding: 0;
   width: 100%;
   list-style: none;
   font-size: 0.8rem;
-  overflow-y: visible;
+  overflow-y: auto;
   
   a {
     display: block;
