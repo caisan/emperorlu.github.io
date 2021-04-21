@@ -1,11 +1,11 @@
 # main links links
 main:
 
-  - title: "Tags"
+  - title: "Blogs"
     url: /tags/
 
-  - title: "Blogs"
-    url: /year-archive/
+  # - title: "Blogs"
+  #   url: /year-archive/
 
   - title: "Projects"
     url: /projects/
