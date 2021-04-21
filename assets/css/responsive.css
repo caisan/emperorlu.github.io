@@ -19,12 +19,12 @@
 }
 
 .comment-position {
-  width: 70%;
+  width: 50%;
 }
 
 .list-position {
   width: 25%;
-  /* right: 10%; */
+  right: 10%;
 }
 
 .mobile-visible {
