@@ -8,6 +8,7 @@ permalink: /tags/
 <link rel="stylesheet" href="/assets/css/index.css">
 
 <div id="main" role="main">
+{% include sidebar.html %}
 <section class="container content">
     <div class="columns">
         <div class="column three-fourths">

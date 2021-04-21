@@ -86,7 +86,6 @@
 }
 
 .list-group-item {
-    text-decoration: none;
     position: relative;
     display: block;
     padding: 10px 15px;
@@ -97,13 +96,11 @@
 
 
 .list-group-item:first-child {
-    text-decoration: none;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
 
 .list-group-item:last-child {
-    text-decoration: none;
     margin-bottom: 0;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
