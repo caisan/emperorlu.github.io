@@ -71,6 +71,9 @@
     line-height: inherit;
     /* color: #4183c4; */
 }
+.posts-list-item a:hover {
+    text-decoration: underline;
+}
 
 .posts-list-meta {
     font-size: 12px;
