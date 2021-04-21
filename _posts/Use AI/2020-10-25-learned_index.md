@@ -5,7 +5,7 @@ tags:
   - AI_for_Storage
 ---
 
-{% include toc %}
+{% include toc.html html=content %}
 
 本文主要介绍Learned index，详细的调研和使用分析。
 
