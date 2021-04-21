@@ -85,9 +85,7 @@
     margin-bottom: 20px;
 }
 
-.list-group-item a{
-    text-decoration: none;
-    color: #ddd;
+.list-group-item {
     position: relative;
     display: block;
     padding: 5px 15px;
@@ -96,6 +94,10 @@
     border: 1px solid #ddd;
 }
 
+.list-group-item a{
+    text-decoration: none;
+    color: rgba(110, 104, 104, 0.829);
+}
 
 .list-group-item:first-child {
     border-top-left-radius: 4px;
