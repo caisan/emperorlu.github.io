@@ -80,13 +80,18 @@
   
 - Server load balancing
 
-  - 状态空间（State）
+  - 任务分配给不同服务器，使得负载均衡，并且每个任务运行时间短
+  - S：当前服务器的负载，进来的任务的大小
+  - A：分配给任务的服务器ID
+  - R：每个任务运行时间的惩罚
+  - 每步时间：1ms
+  - 挑战：**1**）输入驱动的变化(input-driven variance)，2）状态表征 (state representation)，3）动作表征 (action representation)，**4**）无限长的时间范围 (infinite horizon)，5）仿真现实差距 (simulation reality gap)，6）交互时间慢 (slow interaction time)，7）稀疏空间探索 (sparse space for exploration)，**8**）安全探索 (safe exploration)
 
 ### 1. 数据库
 
 - 很多过程都可以使用机器学习或者强化学习算法
 
-<img src="..\photos\database.png" alt="database" style="zoom: 20%;" />
+<img src="..\photos\database.png" alt="database" style="zoom: 25%;" />
 
 ### 2. 集群调度
 
