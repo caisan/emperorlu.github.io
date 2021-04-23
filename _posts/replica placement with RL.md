@@ -31,7 +31,7 @@
     - Off-Policy
   - 基于Policy
 
-  <img src="C:\lukai1\桌面\商汤实习\Blog\emperorlu.github.io\photos\RL发展.png" alt="RL发展" style="zoom:67%;" />
+  <img src="..\photos\RL发展.png" alt="RL发展" style="zoom:67%;" />
 
 - 分类，OpenAI的总结
 
