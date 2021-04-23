@@ -1,14 +1,34 @@
-# Replica Placement with RL
+---
+title: 'Replica Placement with RL'
+tags:
+  - Load_Balancing
+---
+
+# Replica Placement 
 
 > **不要温顺地走入那个良宵，老年应当在日暮时分燃烧咆哮。— 迪伦·托马斯**
 
 
 
-- 做两套方案
-  - 靠谱的：真正可控可靠均匀的机制
-  - 不靠谱的：发论文
+[TOC]
 
-[toc]
+## 背景
+
+- 问题（Ceph-Crush 问题）
+  - 问题1：不可控迁移，迁移量是理论下限的h倍（h为分层结构的层数）
+  - 问题2：不够均衡，CRUSH输入的样本容量不够、副本机制的缺陷
+  - 问题3：选择存储节点时，仅以节点存储容量为唯一选择条件，并没有考虑其他因素（到网络和节点
+    的负载状况等等）
+
+- 方案：做两套
+  - 靠谱的：真正可控可靠均匀的机制，额外代价
+    - Crush算法优化
+    - balancer、upmap研究和优化
+  - 不靠谱的：发论文，先进算法，恐有奇效
+    - 算法：分布算法（见[load balancing.md]()），策略调度（图分割、ML、RL）
+    - Replica Placement with RL
+
+
 
 ## RL简介
 
@@ -18,7 +38,7 @@
 
   
 
-  <img src="../photos/image-20210422193919743.png" alt="image-20210422193919743" style="zoom: 50%;" />
+  <img src="../../photos/image-20210422193919743.png" alt="image-20210422193919743" style="zoom: 50%;" />
 
 - 基本要素
 
@@ -35,11 +55,11 @@
     - Off-Policy
   - 基于Policy
 
-  <img src="..\photos\RL发展.png" alt="RL发展" style="zoom:67%;" />
+  <img src="..\..\photos\RL发展.png" alt="RL发展" style="zoom:67%;" />
 
 - 分类，OpenAI的总结
 
-  <img src="../photos/rl_algorithms.svg" alt="image-20210422193919743" style="zoom: 50%;" />
+  <img src="../../photos/rl_algorithms.svg" alt="image-20210422193919743" style="zoom: 50%;" />
 
   - 用的最广的还是Q-Learning、Sarsa、DQN
   
@@ -49,7 +69,7 @@
 
   - Q table是一种记录状态-行为值 (Q value) 的表
 
-    ![q_learning](..\photos\q_learning.png)
+    ![q_learning](..\..\photos\q_learning.png)
 
   - Q value的更新是根据贝尔曼方程
 
@@ -95,7 +115,7 @@
 
 - 很多过程都可以使用机器学习或者强化学习算法
 
-<img src="..\photos\database.png" alt="database" style="zoom: 25%;" />
+<img src="..\..\photos\database.png" alt="database" style="zoom: 25%;" />
 
 ### 2. 集群调度
 
@@ -109,27 +129,42 @@
 
 - replica placement in KV-store
 
-<img src="../photos/image-20210422193516963.png" alt="image-20210422193516963" style="zoom:67%;" />
+<img src="../../photos/image-20210422193516963.png" alt="image-20210422193516963" style="zoom:67%;" />
 
 ### 问题抽象
 
 - 副本放置问题：M个数据存到到N个机器上，每个数据R个副本在不同机器上，下图中R=2
 
-  ​	<img src="..\photos\load.png" alt="load" style="zoom: 25%;" />
+  ​	<img src="..\..\photos\load.png" alt="load" style="zoom: 25%;" />
 
   - 目标：1. 每个机器上的数据尽量均匀
   - 后续保证：2. 每个机器上的主副本尽量均匀；3. 机器异构环境
 
 - 具体到Ceph
 
-  <img src="..\photos\背景ceph.png" alt="load" style="zoom: 25%;" />
+  <img src="..\..\photos\背景ceph.png" alt="load" style="zoom: 25%;" />
 
 ### 强化学习建模
 
 - **ing**
 - 如何建模，选择模型，训练加速，结果调优，挑战解决
 - 组件：适用各种数据分布场景 /  针对Ceph特定场景
+- 基本
+
+
+
+
 
 ## 参考文献
+
+1. Reinforcement Learning: An Introduction
+2. Park: An Open Platform for Learning-Augmented Computer Systems
+3. 
+
+
+
+
+
+
 
 > **怒斥，怒斥那光的消逝。— 迪伦·托马斯**
