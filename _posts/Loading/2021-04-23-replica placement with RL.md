@@ -25,7 +25,7 @@ tags:
     - Crush算法优化
     - balancer、upmap研究和优化
   - 不靠谱的：发论文，先进算法，恐有奇效
-    - 算法：分布算法（见[load balancing.md](2021-04-12-数据分布和负载均衡.md)），策略调度（图分割、ML、RL）
+    - 算法：分布算法（见[load balancing.md](./2021-04-12-数据分布和负载均衡.md)），策略调度（图分割、ML、RL）
     - Replica Placement with RL
 
 
