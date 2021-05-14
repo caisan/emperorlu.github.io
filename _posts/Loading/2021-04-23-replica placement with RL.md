@@ -154,7 +154,7 @@ tags:
   - Online Tuning
     - 如果用户要调整数据库，则只需向CDBTune提交调整请求，该请求与现有的调整工具（如OtterTune和BestConfig）一致。一旦收到用户的在线调整请求，CDBTune就会在最近约150秒内从用户那里收集查询工作量q，获取当前旋钮配置a，并在CDB中执行查询工作量以生成当前状态s和性能r。接下来，它使用通过离线训练获得的模型进行在线调整。最终，将向用户推荐与在线调整中的最佳性能相对应的那些旋钮。如果调整过程终止，我们还需要更新深度RL模型和内存池
 
-  <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513174616506.png" alt="image-20210513174616506" style="zoom: 67%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514141835184.png" alt="image-20210514141835184" style="zoom: 67%;" />
+  <img src="..\..\photos\Load\image-20210513174616506.png" alt="image-20210513174616506" style="zoom: 67%;" /><img src="..\..\photos\Load\image-20210514141835184.png" alt="image-20210514141835184" style="zoom: 67%;" />
 
 - 系统架构
 
@@ -178,13 +178,13 @@ tags:
 
   - **ing**
 
-  ​	<img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514143946653.png" alt="image-20210514143946653" style="zoom:67%;" />
+  ​	<img src="..\..\photos\Load\image-20210514143946653.png" alt="image-20210514143946653" style="zoom:67%;" />
 
 - 测试
 
   - 对比Sysbench，MySQL-TPCH和TPC-MySQL
 
-    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514144420558.png" alt="image-20210514144420558" style="zoom: 67%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514144434658.png" alt="image-20210514144434658" style="zoom: 67%;" />
+    <img src="..\..\photos\Load\image-20210514144420558.png" alt="image-20210514144420558" style="zoom: 67%;" /><img src="..\..\photos\Load\image-20210514144434658.png" alt="image-20210514144434658" style="zoom:50%;" />
 
 - 优势
 
@@ -208,7 +208,7 @@ tags:
 
   - 5个数据集，329traces
 
-    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513195156664.png" alt="image-20210513195156664" style="zoom:50%;" />
+    <img src="..\..\photos\Load\image-20210513195156664.png" alt="image-20210513195156664" style="zoom:50%;" />
 
     - LRU-friendly: 由访问序列定义的LRU友好型，该访问序列最好由 LRU 缓存算法来处理
     - LFU-friendly: 由访问序列定义的LFU友好型，该访问序列最好由 LFU 缓存算法处理
@@ -218,7 +218,7 @@ tags:
 
   - 图1是来自FIU跟踪收集的topgun(第16天)工作负载的访问模式，图2是各个数据集中四种负载情况
 
-    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513200028006.png" alt="image-20210513200028006" style="zoom: 33%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514105547946.png" alt="image-20210514105547946" style="zoom:50%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514105606178.png" alt="image-20210514105606178" style="zoom:50%;" />
+    <img src="..\..\photos\Load\image-20210513200028006.png" alt="image-20210513200028006" style="zoom: 33%;" /><img src="..\..\photos\Load\image-20210514105547946.png" alt="image-20210514105547946" style="zoom:50%;" /><img src="..\..\photos\Load\image-20210514105606178.png" alt="image-20210514105606178" style="zoom:50%;" />
 
   - 图3是各种缓存算法对四种负载的支持，Adaptive Replacement Cache (ARC)  ，Low Interference Recency Set (LIRS)，Dynamic LIRS (DLIRS) ，Learning Cache Replacement (LeCaR)  
 
@@ -226,7 +226,7 @@ tags:
 
   - 现在最先进的缓存算法各种负载下表现性能不一
 
-    ![image-20210514110729708](C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514110729708.png)
+    ![image-20210514110729708](..\..\photos\Load\image-20210514110729708.png)
 
   - LeCaR（HotStorage’18）是一种基于机器学习的缓存算法，使用**强化学习**和**遗憾最小化算法**，动态控制地使用两个缓存替换策略LRU和LFU。在实际工作负载的小缓存大小下，LeCaR的性能优于ARC。然而，LeCaR在适应性、开销和不友好等方面存在缺陷
 
@@ -247,7 +247,7 @@ tags:
 
 - 性能表现
 
-<img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514110918276.png" alt="image-20210514110918276" style="zoom:50%;" />
+<img src="..\..\photos\Load\image-20210514110918276.png" alt="image-20210514110918276" style="zoom:50%;" />
 
 
 
@@ -268,7 +268,7 @@ tags:
 
 - 方案建模
 
-<img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210426143706643.png" alt="image-20210426143706643" style="zoom:50%;" />          <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210426143809931.png" alt="image-20210426143809931" style="zoom:50%;" />
+<img src="..\..\photos\Load\image-20210426143706643.png" alt="image-20210426143706643" style="zoom:50%;" />          <img src="..\..\photos\Load\image-20210426143809931.png" alt="image-20210426143809931" style="zoom:50%;" />
 
 - 要求
 
@@ -279,11 +279,11 @@ tags:
 
   - 状态空间
 
-    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210426144130209.png" alt="image-20210426144130209" style="zoom:50%;" />
+    <img src="..\..\photos\Load\image-20210426144130209.png" alt="image-20210426144130209" style="zoom:50%;" />
 
     - SNnget: 当前存储节点n中负载, 将v和s的建立映射表, SNnget等于横向之和
 
-      <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210426144326725.png" alt="image-20210426144326725" style="zoom:50%;" />
+      <img src="..\..\photos\Load\image-20210426144326725.png" alt="image-20210426144326725" style="zoom:50%;" />
 
     - SNnlatency: 是存储节点n响应一个数据请求所需的平均时间
 
@@ -295,7 +295,7 @@ tags:
 
   - 奖励定义
 
-    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210426150342017.png" alt="image-20210426150342017" style="zoom:50%;" />
+    <img src="..\..\photos\Load\image-20210426150342017.png" alt="image-20210426150342017" style="zoom:50%;" />
 
 ### 问题抽象
 
