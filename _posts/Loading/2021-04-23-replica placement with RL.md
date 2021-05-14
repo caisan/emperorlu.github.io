@@ -83,11 +83,11 @@ tags:
 
 - Tim Kraska, NeurIPS 2019, https://github.com/park-project/park
 
-- **ing**
+- 背景：计算机系统很多问题本质上是序列决策问题，可以定义成马尔科夫决策过程(MDP)；这样，强化学习就提供了一种解决方案。一个挑战是计算机系统有很多细节。而Park是一个开放平台，用来学习增强的计算机系统；同时，把计算机系统的细节掩盖了起来，这样，机器学习研发人员就可以专注于学习算法
 
-  
-  
-- 12个计算机系统中应用场景
+- 类似于Open AI Gym，Park为广泛的计算机系统问题提供了环境，包括：1）自适应视频流 (Adaptive video streaming)；2）Spark集群任务调度 (Spark cluster job scheduling)；3）SQL数据库查询管理 (SQL database query optimization)；4）网络拥塞控制 (Network congestion control)；5）网络主动队列管理 (Network active queue management)；6）Tensorflow设备安排 (Tensorflow device placement)，7）电路设计 (Circuit design)；8）内容分发网络(content delivery networks, CDN)内存高速缓存 (CDN memory caching)；9）多维数据库索引 (Multi-dim database indexing)；10）帐户地区分配 (Account region assignment)；11）服务器负载均衡 (Server load balancing)；以及，12）交换器调度 (Switch scheduling)
+
+- 提供12个计算机系统中应用场景
 
   | Environment                     | env_id                         | Committers                       |
   | ------------------------------- | ------------------------------ | -------------------------------- |
@@ -104,6 +104,10 @@ tags:
   | Server load balancing           | load_balance                   | Hongzi Mao                       |
   | Switch scheduling               | switch_scheduling              | Ravichandra Addanki, Hongzi Mao  |
   
+- 用强化学习解决计算机系统问题会遇到几个维度的挑战：1）全局或分布式控制；2）快速控制环路或规划；以及，3）真实系统或仿真。有些环境在后台用真实系统。而对于其它环境，在对系统动态深入了解的基础上，设计了仿真程序
+
+- 现成的强化学习算法不一定能直接工作，由于一些挑战：1）输入驱动的变化(input-driven variance)，2）状态表征 (state representation)，3）动作表征 (action representation)，4）无限长的时间范围 (infinite horizon)，5）仿真现实差距 (simulation reality gap)，6）交互时间慢 (slow interaction time)，7）稀疏空间探索 (sparse space for exploration)，8）安全探索 (safe exploration)
+
 - Server load balancing
 
   - 任务分配给不同服务器, 使得负载均衡, 并且每个任务运行时间短
@@ -111,7 +115,7 @@ tags:
   - A: 分配给任务的服务器ID
   - R: 每个任务运行时间的惩罚
   - 每步时间: 1ms
-  - 挑战: **1**）输入驱动的变化(input-driven variance), 2）状态表征 (state representation), 3）动作表征 (action representation), **4**）无限长的时间范围 (infinite horizon), 5）仿真现实差距 (simulation reality gap), 6）交互时间慢 (slow interaction time), 7）稀疏空间探索 (sparse space for exploration), **8**）安全探索 (safe exploration)
+  - 挑战: 1、4、8
 
 ### 1. 数据库
 
@@ -119,13 +123,139 @@ tags:
 
 <img src="..\..\photos\database.png" alt="database" style="zoom: 25%;" />
 
+### An End-to-End Automatic Cloud Database Tuning System Using Deep Reinforcement Learning 
+
+- 数据库数据调参存在的问题
+
+  - 首先，他们采用流水线学习模型，前一阶段的最优解不能保证其后阶段的最优解，并且模型的不同阶段可能无法很好地协同工作，**不能以端到端的方式优化整体性能**
+  - 其次，他们依赖**难以获得的大规模高质量培训样本**，云数据库的性能受各种因素的影响，例如内存大小，磁盘容量，工作负载，CPU模型和数据库类型。很难再现所有条件并积累高质量的样本
+  - 第三，**在连续空间中有大量的旋钮**，它们之间存在看不见的依存关系，因此无法在这种高维连续空间中推荐合理的配置
+    - 不能仅通过使用高斯过程（GP）回归OtterTune之类的回归方法来优化高维连续空间中的旋钮设置，因为旨在在连续空间中找到最佳解决方案的DBMS配置调整问题是NP-hard
+    - 而且，旋钮处于连续的空间中并且具有看不见的依赖性，性能不会在任何方向上单调变化。此外，由于参数空间的连续可调，旋钮的组合数不胜数，因此很难找到最佳解决方案。
+  - 最后，在云环境中，它们几乎无法应对硬件配置和工作负载的变化，并且**适应性较差**
+
+- CUBTune
+
+  - **深度RL学习**和**推荐数据库配置**的端到端自动数据库调整系统
+  - 采用**试错法**来学习有限数量样本的旋钮设置，以完成初始训练，从而减轻了收集大量高质量样本的难度
+  - 在RL中设计了有效的**奖励反馈机制**，可启用端到端的调整系统，加快模型的收敛速度，并提高调整效率
+  - 利用**深度确定性策略梯度法**（DDPG）在高维连续空间中找到最优配置
+    - DDPG 在 DPG 的基础上结合了 DQN 的理念，能够处理高维（high-dimensional）、连续动作空间（continuous action spaces）问题
+    - Continuous control with deep reinforcement learning，2015，被引用5654，但未发表
+
+- CDBTune工作机制
+
+  -  Offline Training
+    - 训练数据<q,a,s,r>，其中q是一组查询工作负载（即SQL查询），a是一组旋钮及其在处理q时的值，s是数据库状态（这是63个指标的集合）在处理q时，r是处理q时的性能（包括吞吐量和延迟)，所有收集的度量和旋钮数据将存储在内存池中
+    - 训练模型：RL模型
+    - Training Data Generation，一开始生成一些负载训练，后面在实际使用过程中调整训练
+      - Cold Start，由于离线培训过程开始时缺乏历史经验数据，因此我们利用标准的工作负载测试工具（例如Sysbench）来生成一组查询工作负载。然后，对于每个查询工作量q，我们在CDB上执行它并获得初始值。然后，我们使用上述的尝试和错误策略来训练四元组并获得更多的训练数据
+      - Incremental Training 增量训练 ，在稍后的CDBTune实际使用期间，对于每个用户调整请求，我们的系统都会根据CDBTune推荐的配置不断从用户请求中获取反馈信息。随着逐渐将更多真实的用户行为数据添加到训练过程中，CDBTune将进一步加强模型并提高模型的推荐准确性
+  - Online Tuning
+    - 如果用户要调整数据库，则只需向CDBTune提交调整请求，该请求与现有的调整工具（如OtterTune和BestConfig）一致。一旦收到用户的在线调整请求，CDBTune就会在最近约150秒内从用户那里收集查询工作量q，获取当前旋钮配置a，并在CDB中执行查询工作量以生成当前状态s和性能r。接下来，它使用通过离线训练获得的模型进行在线调整。最终，将向用户推荐与在线调整中的最佳性能相对应的那些旋钮。如果调整过程终止，我们还需要更新深度RL模型和内存池
+
+  <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513174616506.png" alt="image-20210513174616506" style="zoom: 67%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514141835184.png" alt="image-20210514141835184" style="zoom: 67%;" />
+
+- 系统架构
+
+  - Workload Generator：生成标准工作负载测试和重播当前用户的实际工作负载
+  - Metrics Collector：在根据调整请求调整CDB时，我们将收集并处理指标数据（目前63个指标），这些数据可以捕获特定时间间隔内CDB运行时行为的更多方面
+  - Recommender：当深度RL模型输出推荐的配置时，推荐器将生成相应的执行设置参数命令，并将修改配置的请求发送到控制器。在获得DBA或用户的许可后，控制器将上述配置部署在CDB的实例上
+  - Memory Pool：使用内存池来存储训练样本
+
+- RL 模型
+
+  - 刚开始使用Qlearning和DQN模型，但是这两种方法都无法解决高维空间（数据库状态，旋钮组合）和连续动作（连续旋钮）的问题。最终，我们采用了基于策略的DDPG方法，该方法有效地克服了上述缺点
+  - agent：可以看作是调优系统CDBTune，它从CDB接收奖励（即性能变化）和状态，并更新策略以指导如何调整旋钮以获得更高的奖励（更高的性能）
+  - 环境：环境是调整目标，特别是CDB的实例
+  - 状态：指agent的当前状态，即63个指标。具体来说，当CDBTune建议一组旋钮设置并由CDB执行时，内部度量标准（例如一段时间内收集到的从磁盘读取或写入磁盘的页面的计数器）代表CDB的当前状态。通常，我们将时间t处的状态描述为St
+  - 奖励：奖励是描述为St的标量，它表示在时间t处的性能与在t-1处的性能（或初始设置）之间的差异，即CDB执行CDBTune在时间t推荐的新旋钮配置之后/之前的性能变化
+  - 动作：旋钮配置的空间，通常被称为At。此处的动作对应于旋钮调整操作，CDB在相应状态下根据最新策略执行相应的操作。请注意，操作是一次增加或减少所有可调旋钮的值
+  - 策略：策略µ(st) 定义CDBTune在某些特定时间和环境下的行为，这是从状态到操作的映射。换句话说，在给定CDB状态的情况下，如果调用了某个动作（即旋钮调整），则该策略通过将动作应用于原始状态来保持下一个状态。这里的策略是深度神经网络，该网络保留输入（数据库状态），输出（旋钮)以及不同状态之间的转换。 RL的目标是学习最佳策略。
+  - RL的训练和调整，理论知识，Q-learning、DQN，两种比较和不足
+
+- DDPG和奖励函数
+
+  - **ing**
+
+  ​	<img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514143946653.png" alt="image-20210514143946653" style="zoom:67%;" />
+
+- 测试
+
+  - 对比Sysbench，MySQL-TPCH和TPC-MySQL
+
+    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514144420558.png" alt="image-20210514144420558" style="zoom: 67%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514144434658.png" alt="image-20210514144434658" style="zoom: 67%;" />
+
+- 优势
+
+  - 基于腾讯数据库平台和数据集，实现了完整的系统，已上线
+  - 思路清晰，框架简洁，非常完备，实用性强，效果不错
+
 ### 2. 集群调度
 
-Device Placement Optimization with Reinforcement Learning  
+### Device Placement Optimization with Reinforcement Learning  
 
-3. 组合优化-NP难问题
-4. 芯片设计
-5. 增强数据, 优化机器学习
+### 3. cache
+
+### Learning Cache Replacement with Cacheus  
+
+- 缓存算法面对当前复杂环境并不完美
+
+  - 缓存算法在某些工作负载下表现良好，但在其他工作负载下却表现不佳
+  - 缓存算法在某些缓存大小下表现良好，但在其他缓存大小下不一定表现良好
+
+- **工作1：分析负载特征，总结了四种缓存负载类型:** LRU-friendly, LFU-friendly, scan, and churn
+
+  - 5个数据集，329traces
+
+    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513195156664.png" alt="image-20210513195156664" style="zoom:50%;" />
+
+    - LRU-friendly: 由访问序列定义的LRU友好型，该访问序列最好由 LRU 缓存算法来处理
+    - LFU-friendly: 由访问序列定义的LFU友好型，该访问序列最好由 LFU 缓存算法处理
+    - scan: 扫描由访问序列定义，其中存储项的子集只被访问一次
+    - churn: 是指重复访问存储的项目子集，并且每个项目都有相同的访问概率
+      - 随着缓存大小的变化，单个工作负载的原语类型可能会发生变化。LRU-friendly类型的工作负载在缓存大小C1可以在缓存大小为C2 < C1时转换为Churn类型。当工作负载的lru友好工作集中的项在被重用之前开始从缓存中删除时，就会发生这种情况
+
+  - 图1是来自FIU跟踪收集的topgun(第16天)工作负载的访问模式，图2是各个数据集中四种负载情况
+
+    <img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210513200028006.png" alt="image-20210513200028006" style="zoom: 33%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514105547946.png" alt="image-20210514105547946" style="zoom:50%;" /><img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514105606178.png" alt="image-20210514105606178" style="zoom:50%;" />
+
+  - 图3是各种缓存算法对四种负载的支持，Adaptive Replacement Cache (ARC)  ，Low Interference Recency Set (LIRS)，Dynamic LIRS (DLIRS) ，Learning Cache Replacement (LeCaR)  
+
+- **工作2：提出Cacheus ，adaptive的LeCaR的缓存算法**
+
+  - 现在最先进的缓存算法各种负载下表现性能不一
+
+    ![image-20210514110729708](C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514110729708.png)
+
+  - LeCaR（HotStorage’18）是一种基于机器学习的缓存算法，使用**强化学习**和**遗憾最小化算法**，动态控制地使用两个缓存替换策略LRU和LFU。在实际工作负载的小缓存大小下，LeCaR的性能优于ARC。然而，LeCaR在适应性、开销和不友好等方面存在缺陷
+
+  - LeCaRe无法很好处理Scan和Churn负载，并且学习率固定
+
+  - Cacheus ：很好的支持四种负载，并且学习率可动态调整
+
+- **工作3：两个轻量化CR-LFU和SR-LRU的设计**
+
+  - 这些组合在一起可以解决广泛的工作负载原语类型。CR-LFU给LFU加入churn resistance，SR-LRU给LRU加入scan resistance  
+
+- 总结一下
+
+  - 分成四种负载LRU-friendly、LFU-friendly、churn、scan
+  - **LRU算法对LRU-friendly、churn负载友好，对LFU-friendly、scan不好；LFU算法相反**
+  - **LeCaR控制使用LRU和LFU算法，但是不能很好支持scan和churn**
+  - **Cacheus 加入SR-LRU使LRU支持scan，CR-LFU使LFU支持churn，并且可以动态调整学习率**
+
+- 性能表现
+
+<img src="C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20210514110918276.png" alt="image-20210514110918276" style="zoom:50%;" />
+
+
+
+### 3. 组合优化-NP难问题
+
+### 4. 芯片设计
+
+### 5. 增强数据, 优化机器学习
 
 ## Replica Placement
 
