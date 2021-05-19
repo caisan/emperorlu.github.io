@@ -405,6 +405,72 @@ RL在存储系统中的研究
 
 
 
+结合RL的数据分布算法设计
+
+- 简单实现了两个版本，可以达到不错的均匀分布，支持副本，暂不支持迁移，具体见https://confluence.sensetime.com/pages/viewpage.action?pageId=270923169
+
+- 两种思路：1）RL作为映射算法 和 2）RL作为辅助，调整原有映射算法
+- 环境定义（park），模型实现（tensorflow）
+- **实现1：RL训练出放置策略，action space即为mapping策略**
+  - 简单实现，目前支持映射均匀性、副本机制、增删pg节点（n->m），**一致性 、扩容暂不支持**
+
+    - spcae：各osd的容量状态，{weight0，weight1，...，weightm}
+    - action：{osd0，osd1，...，osdm}
+    - reward：各osd容量标准 / 前后标准差变化 / 极差
+    - policy : 当前状态下选择的action，是训练结果
+    - 模型：当前实现Q-learning和DQN
+    - 实现和效果
+      - 多次迭代训练，选择效果最佳的结果
+      - 1000pg，10osd，3副本，mapping选择另存：可以实现多副本的较平均的分布（标准差2左右）
+  - 问题1：如何映射？
+    - 巨大问题：每次得到状态不一致
+    - 方式1：将映射关系建表
+    - 方式2：分类问题？区分pg id
+  - 问题2：状态过多，空间爆炸；训练精度不足，需要训练很久？
+
+    - n ^ m (1000 ^ 10 = 10 ^ 30)
+    - 改善模型、改善状态定义...
+    - DQN中模型选择：目前使用的MLP，结合RNN、CNN？
+    - 训练参数调整，Oﬀline Training
+
+  - 问题3：如何支持增删osd
+
+    - 减少节点m：控制action不能等于m，就可以均匀分布到其他osd；但是两次映射差距甚大...
+
+    - 增加节点：space和action都要变，模型需要重新训练？另外重新训练和原映射差距甚大...
+
+    - 难点：**增量迁移怎么定义模型？**
+
+      - 想法1：将两次变化量作为reward
+
+        - 训练难收敛，训练效果差
+        - 表格 + RL 再训练?
+      - 想法2：多agent，每个osd相当于agent，Multi-agent Data Distribution
+        - space：weight
+        - action：要 / 不要 / 滚；+ 1 / 0 / -1
+        - reward：对每个agent 尽量少加 / 尽量少减；所有，标准差
+        - 模型学习困难：Actor-Attention-Critic for Multi-Agent Reinforcement Learning，ICML’19
+        - 数据集难以构造，有限样本
+
+      - 想法3：动态环境下的强化学习
+
+        - A Survey of Reinforcement Learning Algorithms for Dynamically Varying Environments，2005
+        - 多模态强化学习
+- **实现2：采用原有的放置策略（hash、crush），RL作为辅助调整，即action调整mapping**
+  - 简单实现，mapping=crush，支持所有
+    - space：各osd的容量状态，{weight0，weight1，...，weightm}
+    - action：crush选出来后左右移动？
+    - reward：经过调整后，标准差变化
+  - 问题 
+    - 只能对均匀进行优化，是否影响性能？
+    - 是否可以抽象成ML分类问题，RL作为调整辅助？
+      - ML分类器 + RL
+    - 是否可以做成一种通用框架，可以适用于各种分布算法？
+
+
+
+
+
 
 
 > **怒斥, 怒斥那光的消逝。— 迪伦·托马斯**
