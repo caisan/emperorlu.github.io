@@ -33,6 +33,8 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Publications
 
+* **Kai Lu**, et al. Learning Replica Placement with RLRP. (to be published)
+
 * **Kai Lu**, et al. TridentKV: A Query Optimized  LSM-tree Based KV Store on NVMe Storage. (to be published) [Code](https://github.com/emperorlu/Learned-Rocksdb)
 
 * Daping Li, **Kai Lu**, Jiguang Wan, et al. [Disperse Access Considered Energy Inefficiency in Intel Optane DC Persistent Memory Servers](https://ieeexplore.ieee.org/document/9355739). (ICDCS 2020) [Code](https://github.com/emperorlu/Sprint-AEP)
