@@ -81,11 +81,11 @@ tags:
 
     - 为了保证读性能，写memtable的过程会为该range tombstone创建一个专门的**range_del_table**，使用skiplist来管理其中的数据，当读请求下发时近需要从该range tombstone中索引对应的key，存在则直接返回Not Found
 
-      <img src="../photos/image-20201218142328598.png" alt="image-20201218142328598" style="zoom:50%;" /><img src="../photos/image-20201218142641181.png" alt="image-20201218142641181" style="zoom:50%;" />
+      <img src="../../photos/image-20201218142328598.png" alt="image-20201218142328598" style="zoom:50%;" /><img src="../../photos/image-20201218142641181.png" alt="image-20201218142641181" style="zoom:50%;" />
 
     - 写入SST的时候，sst为其同样预留了一段专门的存储区域**range tombstone block**，这个block属于元数据的block。也是为了在读请求下发到sst的时候能够从sst中的指定区域判断key是否在delete range的范围内部
 
-    <img src="../photos/image-20201218142727768.png" alt="image-20201218142727768" style="zoom:50%;" />
+    <img src="../../photos/image-20201218142727768.png" alt="image-20201218142727768" style="zoom:50%;" />
 
   - 缺陷
 
@@ -161,7 +161,7 @@ tags:
     - SingleDelete用处不大，需要强结合业务使用。定期触发compaction是个比较通用且简单的做法。
     - 从benchmark图上看，仅仅采用定期触发compaction（UDB称为DTC），就可以获得较稳定的QPS。
 
-<img src="../photos/image-20201217161902896.png" alt="image-20201217161902896" style="zoom:67%;" />
+<img src="../../photos/image-20201217161902896.png" alt="image-20201217161902896" style="zoom:67%;" />
 
 - **存储空间和压缩挑战**
   - 内存使用
@@ -176,7 +176,7 @@ tags:
 
 - 效果：提供更高的读取吞吐量(1.17-1.4倍)和更低的空间放大(2.1-9.8倍)，写入放大略有增加(4%-25%)
 
-  ![image-20201218093824011](../photos/image-20201218093824011.png)
+  ![image-20201218093824011](../../photos/image-20201218093824011.png)
 
 - 摘要
 
@@ -192,7 +192,7 @@ tags:
   - 一是 tombstone 存在的时长无法控制：Lethe保证 tombstone 存在的时间是 bounded 的
   - 二是范围删除非 sort key 很难支持/代价很大
 
-<img src="../photos/image-20201217194713544.png" alt="image-20201217194713544" style="zoom:67%;" />
+<img src="../../photos/image-20201217194713544.png" alt="image-20201217194713544" style="zoom:67%;" />
 
 - FADE
 
@@ -202,7 +202,7 @@ tags:
     - 因 tombstone 而失效的记录个数估算值 b。诸如 RocksDB 等引擎，已经统计了每个文件的 num_deletes，作者给出的 b 估算的方式是：num_deletes + range delete 可能失效的记录个数（根据统计信息估计）
     - *可以看到需要的元信息不多，均在 flush/compaction 产生新文件时计算生成，overhead 很小*
 
-  ![image-20201217202704078](../photos/image-20201217202704078.png)
+  ![image-20201217202704078](../../photos/image-20201217202704078.png)
 
   - FADE 主要是根据上面描述的元信息，制定了一些针对 delete 的 Compaction policies。主要涉及两方面：
     - Compaction 触发规则
@@ -224,7 +224,7 @@ tags:
 
 - KiWi
 
-  ![image-20201217202726285](../photos/image-20201217202726285.png)
+  ![image-20201217202726285](../../photos/image-20201217202726285.png)
 
   - LSM-Tree 的分层方式不变，每层文件的排列方式也不变。每个文件的组成，不再是多个 pages，而是加了一层 delete tiles 。同一个文件，delete tile 与 delete tile 之间按照 sort key 排序，delete tile 内部由 h 个 pages 组成，page 与 page 之间按 delete key 排列，page 内按 sort key 排列
     - delete key？
