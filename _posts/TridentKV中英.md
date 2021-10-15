@@ -129,6 +129,7 @@ On the other hand, with the development of new storage media, the access perform
 
 在这篇文章中，我们以Rocksdb为例仔细分析了读过程延迟，发现主要是两部分的问题：1）data access，放盘延迟高，同步读流程限制了并发；2）索引：对于高速存储设备，访盘的延迟越来越低， indexing costs contribute almost equally to the latency。但是Rocksdb的二分查找是不够快的。
 
+
 In this paper, we carefully analyze the query process delay of RocksDB, which is the representative of LSM-tree based KV store. We find that there are mainly two parts of the bottlenecks: 1) High data access latency. The latency of accessing NVMe SSD is high, and the synchronous IO limits concurrency, and 2) Inefficient files indexing. For high-speed storage devices , indexing costs contribute almost equally to the latency of data accessing[?] and Rocksdb's index search for files is not fast enough.
 
 另外，我们测试发现， 发生大规模删除之后，large-scale deletion，  its query performance was severely reduced. 分析原因，是因为Rocksdb标记删除的删除模式造成的。
