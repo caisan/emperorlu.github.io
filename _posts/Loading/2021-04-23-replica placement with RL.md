@@ -243,6 +243,7 @@ tags:
 
 - 总结一下
 
+  - 
   - 分成四种负载LRU-friendly、LFU-friendly、churn、scan
   - **LRU算法对LRU-friendly、churn负载友好，对LFU-friendly、scan不好；LFU算法相反**
   - **LeCaR控制使用LRU和LFU算法，但是不能很好支持scan和churn**
