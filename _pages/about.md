@@ -36,6 +36,9 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Publications
 
+* **Kai Lu**, et al. ACSTS: Automatic Cloud Storage Tuning System via
+Parameter Identifcation and Reinforcement Learning. (to be published) [Code](https://github.com/emperorlu/Auto-Tuning-Ceph)
+
 * **Kai Lu**, et al. RLRP: High-Efficient Data Placement with Reinforcement Learning for Modern Distributed Storage Systems. (to be published) [Code](https://github.com/emperorlu/Replica-Placement)
 
 * **Kai Lu**, et al. [TridentKV: A Read-Optimized LSM-tree Based KV Store via Adaptive Indexing and Space-Efficient Partitioning](https://ieeexplore.ieee.org/document/9563237) (TPDS, CCF A) [Code](https://github.com/emperorlu/Learned-Rocksdb)
