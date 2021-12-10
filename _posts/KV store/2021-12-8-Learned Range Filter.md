@@ -1,6 +1,7 @@
 # Learned Range Filter
 
-
+> 玉可碎而不可改其白，竹可焚而不可毁其节 — 老关
+>
 
 - LeRF: An Efficient Learned Range Filter for Key-Value Stores
 - AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
