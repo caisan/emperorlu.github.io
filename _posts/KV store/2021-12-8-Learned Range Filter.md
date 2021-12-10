@@ -110,7 +110,7 @@
 
 ### 论文2-1 A Model for Learned Bloom Filters, and Optimizing by Sandwiching
 
-- NeurIPS 2018，哈佛 Michael Mitzenmacher
+- NeurIPS 2018，一个作者，哈佛 Michael Mitzenmacher
 
 - 原始Learned Bloom Filter
 
@@ -128,23 +128,34 @@
 
   <img src="..\..\photos\Scan\image-20211209195114883.png" alt="image-20211209195114883" style="zoom:50%;" />
 
-  - FPR的评估：与标准的布隆过滤器不同，其高度依赖于查询集，并且没有独立于查询进行很好的定义
+  - FPR的评估
+
+    - 与标准的布隆过滤器不同，其高度依赖于查询集，并且没有独立于查询进行很好的定义
 
     <img src="..\..\photos\Scan\image-20211209195715822.png" alt="image-20211209195715822" style="zoom:50%;" />
+  
+    - 虽然F(B)本身是一个随机变量，但FPR很集中它的期望，这只取决于过滤器|B|的大小和错误否定的数量从必须存储在过滤器中的K，这取决于f：
+  
+    <img src="..\..\photos\Scan\image-20211210142227258.png" alt="image-20211210142227258" style="zoom:50%;" />
+  
+  - 关于non-key
 
-  - Given sufficient data, we can determine an empirical false positive rate on a test set, and use that
-    to predict future behavior. Under the assumption that the test set has the same distribution as future
-    queries, standard Chernoff bounds provide that the empirical false positive rate will be close to the
-    false positive rate on future queries, as both will be concentrated around the expectation. In many
-    learning theory settings, this empirical false positive rate appears to be referred to as simply the false
-    positive rate; we emphasize that false positive rate, as we have explained above, typically means
-    something different in the Bloom filter literature.  
+    - An assumption in this framework is that the **training sample distribution needs to match or be close to the test distribution of non-keys.** For many applications, past workloads or historical data can be used to get an appropriate non-key sample.  
+    - 训练样本分布需要匹配或接近non-key的测试分布，对于许多应用程序，可以使用过去的工作负载或历史数据来获得适当的non-key示例
+    - 证明：Given sufficient data, we can determine an empirical false positive rate on a test set, and use that
+      to predict future behavior. Under the assumption that the test set has the same distribution as future
+      queries, standard Chernoff bounds provide that the empirical false positive rate will be close to the
+      false positive rate on future queries, as both will be concentrated around the expectation. In many
+      learning theory settings, this empirical false positive rate appears to be referred to as simply the false
+      positive rate; we emphasize that false positive rate, as we have explained above, typically means
+      something different in the Bloom filter literature
+    - **ing**
 
-  <img src="..\..\photos\Scan\image-20211209150106669.png" alt="image-20211209150106669" style="zoom: 50%;" />
+<img src="..\..\photos\Scan\image-20211209150106669.png" alt="image-20211209150106669" style="zoom: 50%;" />
 
-  - 除了使用一个后置布隆过滤器外，三明治（Sandwiching）结构还使用了一个前置布隆过滤器
-    - 由于后置布隆过滤器的大小与通过RNN模型的假阴性元素数量呈正相关，所以通过使用前置布隆过滤器消除更多的假阴性, 能够降低后置布隆过滤器的空间代价
-    - 三明治结构的另一个优点是它与Kraska等人提出的学习布隆过滤器结构相比具有更强的鲁棒性。如果用于学习布隆过滤器的训练集和测试集具有不同的数据分布，那么RNN模型的FNR可能远远大于预期。增加一个前置布隆过滤器能够缓解这个问题，因为它预先过滤了一部分假阴性元素
+- 除了使用一个后置布隆过滤器外，三明治（Sandwiching）结构还使用了一个前置布隆过滤器
+  - 由于后置布隆过滤器的大小与通过RNN模型的假阴性元素数量呈正相关，所以通过使用前置布隆过滤器消除更多的假阴性, 能够降低后置布隆过滤器的空间代价
+  - 三明治结构的另一个优点是它与Kraska等人提出的学习布隆过滤器结构相比具有更强的鲁棒性。如果用于学习布隆过滤器的训练集和测试集具有不同的数据分布，那么RNN模型的FNR可能远远大于预期。增加一个前置布隆过滤器能够缓解这个问题，因为它预先过滤了一部分假阴性元素
 
 ### 论文2-2 Adaptive Learned Bloom Filter (Ada-BF) 
 
