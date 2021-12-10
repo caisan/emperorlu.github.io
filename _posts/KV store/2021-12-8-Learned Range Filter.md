@@ -6,9 +6,8 @@
 - LeRF: An Efficient Learned Range Filter for Key-Value Stores
 - AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
 - 老师意见（画饼）
-  - filter单独投一篇：偏机器学习投NeurIPS，偏kv投Sigmod
+  - filter单独投一篇：偏机器学习 / 偏kv投不同会议
   - 范围优化kv：引用上篇，删除优化，异步scan
-  - 之前论文写专利
 
 ## 相关文章
 
@@ -143,7 +142,7 @@
 
   <img src="..\..\photos\Scan\image-20211209150106669.png" alt="image-20211209150106669" style="zoom: 50%;" />
 
-  - 除了使用一个后置布隆过滤器外，三明治结构还使用了一个前置布隆过滤器
+  - 除了使用一个后置布隆过滤器外，三明治（Sandwiching）结构还使用了一个前置布隆过滤器
     - 由于后置布隆过滤器的大小与通过RNN模型的假阴性元素数量呈正相关，所以通过使用前置布隆过滤器消除更多的假阴性, 能够降低后置布隆过滤器的空间代价
     - 三明治结构的另一个优点是它与Kraska等人提出的学习布隆过滤器结构相比具有更强的鲁棒性。如果用于学习布隆过滤器的训练集和测试集具有不同的数据分布，那么RNN模型的FNR可能远远大于预期。增加一个前置布隆过滤器能够缓解这个问题，因为它预先过滤了一部分假阴性元素
 
@@ -151,7 +150,7 @@
 
 - NeurIPS 2020
 
-- key分布如何求得？
+- key分布如何求得？non-key的选取？
 
   <img src="..\..\photos\Scan\image-20211203145902907.png" alt="image-20211203145902907" style="zoom:67%;" />
 
@@ -179,7 +178,9 @@
   - 优势：感知数据模式，精度高，体积小
   - 劣势：不支持range query，模型精度随数据不定，不支持动态插入和更新
 
-## Learned Range Filter
+
+
+## 设计与测试
 
 - Learned + Range Filter两则结合
 
@@ -242,9 +243,10 @@ Test False positive rate:  0.010351505356869193
 
 ### Next
 
-- Range Filter理论支持
+- Range Filter
+  - 理论支持？
   - non-key数据？
-  - Range Filter如何实现
+  - Range Filter如何实现？
 - 测试
   - LBF其他模型测试，单独用lr精度过低
   - LBF用于Rocksdb + 其他数据集测试
