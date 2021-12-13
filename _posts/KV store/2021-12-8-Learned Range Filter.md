@@ -7,7 +7,7 @@
 - AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
 - 老师意见（画饼）
   - filter单独投一篇：偏机器学习 / 偏kv投不同会议
-  - 范围优化kv：引用上篇，删除优化，异步scan
+  - 范围优化kv：引用上篇；删除优化；异步scan
 
 ## 相关文章
 
