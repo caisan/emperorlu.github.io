@@ -106,7 +106,9 @@
 
 - 具体设计
 
-  - **ing**
+  - ZeRO-Infinity Oﬀload Strategy：我们只有在聚合的GPU内存不够的时候才会卸载（offload）。 首先，我们将状态和梯度优化器（optimizerstates and gradients ）卸载到具有足够容量的最快内存中，因为它以最小的通信开销节省了最大的内存。 接下来，在参数和激活检查点（parameters and activation checkpoints ）之间，如果只有一个需要消耗CPU内存，我们根据经验选择消耗性能更好的那个。 当两者都需要卸载时，激活检查点被负载到CPU，参数被负载到有足够容量的最快内存中
+
+  - **ing**  
 
   - 有史以来见过最丑的测试图
 
