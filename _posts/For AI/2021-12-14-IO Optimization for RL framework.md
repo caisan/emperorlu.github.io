@@ -1,5 +1,7 @@
 # IO Optimization for RL Framework
 
+> 那种勃勃生机，万物竞发的境界犹在眼前 —— 老石
+
 - 目标：A
 - 时间：待定
 - 问题：待定
@@ -21,8 +23,8 @@
   - 算法，通信，IO，预取，并行...
 - 内存不足
   - 模型裁剪/优化、超频、算法优化...
-  - 卸载到高性能介质
-  - Disaggregated Memory （内存分解/内存解聚）
+  - 单机：卸载到高性能介质/CPU
+  - 分布式：Disaggregated Memory （内存分解/内存解聚）
 
 ## Related Work
 
@@ -30,14 +32,34 @@
 
 - [SC '21] ZeRO-Infinity: Breaking the GPU Memory Wall for Extreme Scale Deep Learning
 - [ATC '21] ZeRO-Offload: Democratizing Billion-Scale Model Training
+  - ZeRO-Offload enables large model training by offloading data and compute to CPU  
 - [FAST '21] Behemoth: A Flash-centric Training Accelerator for Extreme-scale DNNs
 - [FAST '2] FlashNeuron: SSD-Enabled Large-Batch Training of Very Deep Neural Networks  
 
-#### 论文1-1. ZeRO-infinity: breaking the GPU memory wall for extreme scale deep learning. 
+#### 论文1-1. ZeRO-infinity: breaking the GPU memory wall for extreme scale deep learning
 
-- SC '21，microsoft，DeepSpeed
+- SC '21 Best Paper，microsoft，DeepSpeed
 
+- 背景
+
+  - 在过去的三年里，最大的密集深度学习模型增长了1000多倍，达到了数千亿个参数，而GPU内存只增长了5倍(16gb到80gb)。因此，the growth in model scale has been supported primarily though system innovations that allow large models to ft in the aggregate GPU memory of multiple GPUs  
+  - GPU memory wall：It requires 800 NVIDIA V100 GPUs just to fit a trillion（万亿） parameter model for training  
+  
 - ZeRO-Infnity：a novel heterogeneous system technology that leverages GPU, CPU, and NVMe memory to allow for unprecedented model scale on limited resources without requiring model code refactoring  
+
+  - CPU memory和NVMe构成slow memory，补充GPU容量
+  - 按照model states such as parameter, gradients and optimizer states 进行分区，在所有数据并行进程中充分利用聚合内存
+    - 如何分区？分区如何加速并行？
+
+- Data, Model, Pipeline and 3D Parallelism  
+
+  - **in...**
+
+- ZeRO: Zero Redundancy Optimizer  
+
+- Reducing Activation Memory  
+
+- Adam Optimizer and Mixed Precision Training  
 
   <img src="..\..\photos\paper\SC21-zero.png" alt="SC21-zero" style="zoom: 50%;" />
 
@@ -81,21 +103,21 @@
   - [OSDI '18 best paper] LegoOS: A Disaggregated, Distributed OS for Hardware Resource Disaggregation
   - [ATC '20] Disaggregating Persistent Memory and Controlling Them Remotely: An Exploration of Passive Disaggregated Key-Value Stores
   - [ ASPLOS '22] Clio: A Hardware-Software Co-Designed Disaggregated Memory System
-
 - [ATC '20 best paper] Effectively Prefetching Remote Memory with Leap
+- [ATC '21] Zico: Efficient GPU Memory Sharing for Concurrent DNN Training
 - wxd...
 
 #### 论文4-1. Disaggregating OS && Disaggregating Persistent Memory
 
 - Distributed Shared Memory (Disaggregated  Memory)，PM，RDMA，多核，混合系统架构...
 
-  ![dsm](C:\lukai1\桌面\商汤实习\Blog\emperorlu.github.io\photos\paper\dsm.png)
+  ![dsm](..\..\photos\paper\dsm.png)
 
   - DSM 通过操作系统的内存管理系统把各个独立服务器上的内存地址连接到一起，组成连续的内存地址，使得应用程序可以更方便的做数据共享
 
   - 随着RDMA的兴起，DSM也随着发展
 
-    <img src="C:\lukai1\桌面\商汤实习\Blog\emperorlu.github.io\photos\paper\dsm2.png" alt="dsm" style="zoom: 15%;" />
+    <img src="..\..\photos\paper\dsm2.png" alt="dsm" style="zoom: 15%;" />
 
 - splitkernel: hardware resource disaggregation
 - LegoOS: 把 CPU、Memory 和 Storage 分别抽象为 pComponent、mComponent 和 sComponent，这些设备之间通过 RDMA 网络连接在一起
@@ -165,13 +187,11 @@
 
   <img src="..\..\photos\paper\image-20211216141835383.png" alt="image-20211216141835383" style="zoom: 67%;" />  
 
-- 传统解决方案：Virtualizing Memory for Deep Learning  
-
 - Memory-node architecture  
 
   - In this paper, we make a case for a memory-centric deep learning system architecture (MC-DLA) that aggregates a pool
     of capacity-optimized memory modules within the deviceside interconnect for transparent memory capacity expansion  
-  - 在本文中，我们提出了一个以内存为中心的深度学习系统架构(MC-DLA)的案例，该架构聚集了一个池支持设备侧内存条的容量优化，实现内存透明扩容  
+  - 提出了一个以内存为中心的深度学习系统架构(MC-DLA)的案例，该架构在设备端互连中聚集了一个容量优化的内存模块池，用于透明的内存容量扩展  
 
 <img src="..\..\photos\paper\image-20211216142857385.png" alt="image-20211216142857385" style="zoom:50%;" />
 
@@ -202,7 +222,7 @@
 
 - 分布式存储资源管理
 
-  - 统一管理，资源分解，大规模存储容量，高性能
+  - 统一管理，资源分解，大容量，高性能，伸缩性
 
   <img src="..\..\photos\paper\design.png" alt="design" style="zoom:18%;" />
 

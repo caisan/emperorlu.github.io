@@ -1,5 +1,7 @@
 # SmartNIC Survey
 
+> 世上本无难事，全在人为布局罢了—— 贾诩
+
 ## Overview
 
 ### Background
