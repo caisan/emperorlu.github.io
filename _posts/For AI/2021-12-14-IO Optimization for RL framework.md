@@ -106,6 +106,12 @@
 
   - **ing**
 
+  - 有史以来见过最丑的测试图
+
+    <img src="..\..\photos\paper\image-20211217154747709.png" alt="image-20211217154747709" style="zoom: 50%;" />
+
+  <img src="..\..\photos\paper\image-20211217154723704.png" alt="image-20211217154723704" style="zoom: 33%;" />
+
 #### 论文1-2. Flash-based Memory System for AI
 
 - Behemoth、FlashNeuron(Fast 21)
