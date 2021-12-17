@@ -33,8 +33,9 @@
 - [SC '21] ZeRO-Infinity: Breaking the GPU Memory Wall for Extreme Scale Deep Learning
 - [ATC '21] ZeRO-Offload: Democratizing Billion-Scale Model Training
   - ZeRO-Offload enables large model training by offloading data and compute to CPU  
+- [SC '20] ZeRO: Memory Optimizations toward Training Trillion Parameter Models  
 - [FAST '21] Behemoth: A Flash-centric Training Accelerator for Extreme-scale DNNs
-- [FAST '2] FlashNeuron: SSD-Enabled Large-Batch Training of Very Deep Neural Networks  
+- [FAST '21] FlashNeuron: SSD-Enabled Large-Batch Training of Very Deep Neural Networks  
 
 #### 论文1-1. ZeRO-infinity: breaking the GPU memory wall for extreme scale deep learning
 
@@ -42,26 +43,61 @@
 
 - 背景
 
-  - 在过去的三年里，最大的密集深度学习模型增长了1000多倍，达到了数千亿个参数，而GPU内存只增长了5倍(16gb到80gb)。因此，the growth in model scale has been supported primarily though system innovations that allow large models to ft in the aggregate GPU memory of multiple GPUs  
+  - 在过去的三年里，最大的密集深度学习模型增长了1000多倍，从1亿个参数(ELMo)到超过1000亿个参数(GPT-3)。而GPU内存只增长了5倍(16gb到80gb)。因此，the growth in model scale has been supported primarily though system innovations that allow large models to fit in the aggregate GPU memory of multiple GPUs  
+  - 并行技术来训练大模型：model parallelism, pipeline parallelism, and ZeRO  
+  - 目前大型模型训练技术中最先进的是3D并行(3D parallelism )，它将模型(张量切片)、管道并行与数据并行相结合，在成百上千个gpu上高效地将DL训练扩展到数万亿参数
   - GPU memory wall：It requires 800 NVIDIA V100 GPUs just to fit a trillion（万亿） parameter model for training  
   
+- 深度学习模型训练所需的内存可以分为以下两个部分：
+
+  - 模型状态(OGP)，包括O:优化器状态（例如Aadam优化器中的的momemtum、variance）; G:梯度; P:参数
+  - 剩余状态，主要指激活内存(activation memory )
+  - GPU Working Memory（临时缓冲区等）
+    - Model State Working Memory (MSWM)  ：是模型中最大的单个运算符执行正向或反向传播所需的GPU内存的最小数量。这大约是由模型中该操作符的参数和梯度的大小给出的，因为必须至少有足够的内存来保存参数及其梯度以便向后传播
+    - Activation Working Memory (AWM)  ：是反向传播中在执行实际反向传播之前重新计算激活所需的内存，这是两个连续激活检查点之间的激活大小
+
+  - 数字化定量分析：略
+
+    ![image-20211217142948713](..\..\photos\paper\image-20211217142948713.png)
+
+  - Note that it requires 64 GPUs to just fit the model states for a 100B parameter model. Fitting a trillion parameter model requires over 512 GPUs, while a 10 trillion parameter model is beyond the scope of even a massive 1536 GPU cluster  
+
+- 带宽分析
+
+  - 向**CPU内存和NVMe**卸载的一个关键问题是，它们有限的带宽是否会损害训练效率
+
+  - 数字化定量分析：略
+
+  - 结论：不同部分对带宽需求不同，有些是可以卸载到CPU中，而且不影响效率
+
+    ![image-20211217142908973](..\..\photos\paper\image-20211217142908973.png)
+
 - ZeRO-Infnity：a novel heterogeneous system technology that leverages GPU, CPU, and NVMe memory to allow for unprecedented model scale on limited resources without requiring model code refactoring  
 
+  - 一种新颖的异构系统技术，它利用GPU、CPU和NVMe内存，在有限的资源上实现前所未有的模型规模，而不需要重构模型代码
+
   - CPU memory和NVMe构成slow memory，补充GPU容量
-  - 按照model states such as parameter, gradients and optimizer states 进行分区，在所有数据并行进程中充分利用聚合内存
-    - 如何分区？分区如何加速并行？
 
-- Data, Model, Pipeline and 3D Parallelism  
+  - 划分模型状态，在所有数据并行进程中充分利用聚合内存
 
-  - **in...**
+    <img src="..\..\photos\paper\SC21-zero.png" alt="SC21-zero" style="zoom: 50%;" />
 
-- ZeRO: Zero Redundancy Optimizer  
+- Infinity oﬀload engine for model states  
 
-- Reducing Activation Memory  
+  - ZeRO: Memory Optimizations toward Training Trillion Parameter Models  
+    - ZeRO通过在数据并行进程之间划分OGP模型状态而不是复制它们来消除数据并行进程之间的内存冗余，在训练过程中采用动态通信调度，保持了和数据并行基本一致的计算粒度和通信量，从而保持了计算/通信效率
+    - 原来的方式中数据和模型并行都保持了整个训练过程中所需的所有模型状态，但并不是所有的时间都是必需的。例如，仅在某个层的正向传播和反向传播期间才需要与每个层对应的参数。因此，ZeRO通过对参数（包括优化器状态、梯度和参数）进行分区来消除这种内存冗余，**每个GPU仅保存部分参数及相关状态**
+    - ZeRO中有三个阶段，对应于三个模型状态:第一阶段(ZeRO-1)只划分优化器状态，第二阶段(ZeRO-2)划分优化器状态和梯度，最后阶段(ZeRO-3)划分所有三个模型状态
+  - ZeRO-Infnity建立在ZeRO-3之上，它对所有模型状态进行分区，以消除内存冗余
+  - ZeRO-Infinity设计有一个强大的offload机制，称为infinity offioad引擎，它可以将所有分区的模型状态加载到CPU或NVMe内存中，或者根据内存需求将它们保留在GPU上
 
-- Adam Optimizer and Mixed Precision Training  
+- CPU Oﬀload for activations：除了模型状态之外，必要时，ZeRO-Infinity还可以将激活内存加载到CPU内存中
 
-  <img src="..\..\photos\paper\SC21-zero.png" alt="SC21-zero" style="zoom: 50%;" />
+- Memory-centric tiling for working memory：为了减少大型模型DL训练对working memory的要求，ZeRO-Infnity引入了一种名为“Memory-centric tiling”的新技术，它利用ZeRO-3的数据获取和释放模式，通过将一个大的操作符分解为可以依次执行的更小的平顶来减少工作内存需求
+
+- 具体设计
+
+  - **ing**
 
 #### 论文1-2. Flash-based Memory System for AI
 
@@ -182,7 +218,7 @@
 - device-centric deep learning system architecture (DC-DLA)  
 
   - leading vendors in this space are employing a custom device-side interconnection network that utilizes proprietary high-bandwidth signaling solutions   
-  - 设备端：加机器，并行化，用高性能网络、存储设施
+  - 设备端：加机器，并行化，用高性能网络，存储设施
   - 问题：问题不在设备短，内存不足memory “capacity” wall  
 
   <img src="..\..\photos\paper\image-20211216141835383.png" alt="image-20211216141835383" style="zoom: 67%;" />  
