@@ -215,9 +215,9 @@ Target Environment：disaggregated memory（persist）
 
 Background：
 
-\1. KV-Direct：将KV完全做到SmartNIC内部，但是根据前面的测试来看，NIC core的处理能力有限，完全将KV store offload到NIC内部不是一个理想的方式；
+- KV-Direct：将KV完全做到SmartNIC内部，但是根据前面的测试来看，NIC core的处理能力有限，完全将KV store offload到NIC内部不是一个理想的方式；
 
-\2. RACE：完全利用单边RDMA的一个hash，为了实现无锁大量使用了RDMA atomic，并且每次读操作都需要读128B。除此之外，Resize在远端执行需要较大的CPU开销；
+- RACE：完全利用单边RDMA的一个hash，为了实现无锁大量使用了RDMA atomic，并且每次读操作都需要读128B。除此之外，Resize在远端执行需要较大的CPU开销；
 
  
 
