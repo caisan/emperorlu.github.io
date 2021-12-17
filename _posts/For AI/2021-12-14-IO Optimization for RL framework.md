@@ -1,6 +1,6 @@
 # IO Optimization for RL Framework
 
-> 那种勃勃生机，万物竞发的境界犹在眼前 —— 老石
+> 那种勃勃生机、万物竞发的境界，犹在眼前 —— 老石
 
 - 目标：A
 - 时间：待定
@@ -39,7 +39,7 @@
 
 #### 论文1-1. ZeRO-infinity: breaking the GPU memory wall for extreme scale deep learning
 
-- SC '21 Best Paper，microsoft，DeepSpeed
+- SC '21 Best Paper，microsoft，[DeepSpeed](https://github.com/microsoft/DeepSpeed)开源库：训练1000亿个参数模型的能力
 
 - 背景
 
@@ -68,7 +68,7 @@
 
   - 数字化定量分析：略
 
-  - 结论：不同部分对带宽需求不同，有些是可以卸载到CPU中，而且不影响效率
+  - 结论：不同部分对带宽需求不同，可以在效率和带宽中做权衡
 
     ![image-20211217142908973](..\..\photos\paper\image-20211217142908973.png)
 
@@ -80,15 +80,22 @@
 
   - 划分模型状态，在所有数据并行进程中充分利用聚合内存
 
-    <img src="..\..\photos\paper\SC21-zero.png" alt="SC21-zero" style="zoom: 50%;" />
+    <img src="..\..\photos\paper\SC21-zero.png" alt="SC21-zero" style="zoom: 33%;" />
 
 - Infinity oﬀload engine for model states  
 
   - ZeRO: Memory Optimizations toward Training Trillion Parameter Models  
+
     - ZeRO通过在数据并行进程之间划分OGP模型状态而不是复制它们来消除数据并行进程之间的内存冗余，在训练过程中采用动态通信调度，保持了和数据并行基本一致的计算粒度和通信量，从而保持了计算/通信效率
+
+      <img src="..\..\photos\paper\image-20211217154227520.png" alt="image-20211217154227520" style="zoom: 67%;" />
+
     - 原来的方式中数据和模型并行都保持了整个训练过程中所需的所有模型状态，但并不是所有的时间都是必需的。例如，仅在某个层的正向传播和反向传播期间才需要与每个层对应的参数。因此，ZeRO通过对参数（包括优化器状态、梯度和参数）进行分区来消除这种内存冗余，**每个GPU仅保存部分参数及相关状态**
+
     - ZeRO中有三个阶段，对应于三个模型状态:第一阶段(ZeRO-1)只划分优化器状态，第二阶段(ZeRO-2)划分优化器状态和梯度，最后阶段(ZeRO-3)划分所有三个模型状态
+
   - ZeRO-Infnity建立在ZeRO-3之上，它对所有模型状态进行分区，以消除内存冗余
+
   - ZeRO-Infinity设计有一个强大的offload机制，称为infinity offioad引擎，它可以将所有分区的模型状态加载到CPU或NVMe内存中，或者根据内存需求将它们保留在GPU上
 
 - CPU Oﬀload for activations：除了模型状态之外，必要时，ZeRO-Infinity还可以将激活内存加载到CPU内存中
