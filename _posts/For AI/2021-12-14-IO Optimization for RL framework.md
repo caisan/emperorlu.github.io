@@ -175,7 +175,7 @@
 - splitkernel: hardware resource disaggregation
 - LegoOS: 把 CPU、Memory 和 Storage 分别抽象为 pComponent、mComponent 和 sComponent，这些设备之间通过 RDMA 网络连接在一起
 
-![image-20211216141019871](..\..\photos\paper\image-20211216141019871.png)
+<img src="..\..\photos\paper\image-20211216141019871.png" alt="image-20211216141019871" style="zoom: 50%;" />
 
 - Disaggregating Persistent Memory
 
@@ -189,7 +189,7 @@
 
     - 在aDPM中，将管理程序安装在存储节点，采用这种方式可以降低延迟，但是为了维持较大的网络带宽，在存储节点需要有较高的处理能力，由此会产生较大能耗。此外，如果该系统采用了RDMA技术，那么在这种情况下，需要事先通过管理层才能到达内存，并没有发挥RDMA直达内存的优点
 
-    <img src="..\..\photos\paper\image-20211216112856926.png" alt="image-20211216112856926" style="zoom:50%;" />
+    <img src="..\..\photos\paper\image-20211216112856926.png" alt="image-20211216112856926" style="zoom:40%;" />
 
   - pDPM(passive disaggregated PM)
 
