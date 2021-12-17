@@ -5,8 +5,8 @@
 
 - LeRF: An Efficient Learned Range Filter for Key-Value Stores
 - AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
-- 老师意见（画饼）
-  - filter单独投一篇：偏机器学习 / 偏kv投不同会议
+- 投稿目标
+  - filter单独投一篇：偏机器学习投NeurIPS  / 偏kv投系统会议
   - 范围优化kv：引用上篇；删除优化；异步scan
 
 ## 相关文章
@@ -34,7 +34,7 @@
     - 之前的SSD/HDD等访问延迟较大，Bloom filter引起的开销比重较小，可以忽略不计
     - NVMe SSD性能提升，与DRAM性能差距进一步缩小，由于在每层都要维护Bloom filter，会引起比较大的查询延迟，引起LSM-Tree中Bloom filter成为新的瓶颈之一  
 
-- 相关文章
+- 相关文章 
 
   - Range Filter for KV Stores
   - Learned Filter
@@ -54,7 +54,7 @@
   - 与 SuRF-Hash 不同的是， SuRF-Real 在每个主键前缀的后面存储n 个主键位增加主键的区分度， 在降低误判率的同时提升了点查询和范围查询的性能， 但是由于有些主键的前缀区别较小， SuRF-Real 的误判率不如 SuRF-Hash低
   - SuRF-Mixed 结合了 SuRF-Hash 和SuRF-Real 的优点， 能够有效地支持点查询和范围查询 
 
-- 测试
+- 测试 
 
   - 代码：https://github.com/efcient/SuRF  
 
@@ -141,7 +141,7 @@
   - 关于non-key
 
     - An assumption in this framework is that the **training sample distribution needs to match or be close to the test distribution of non-keys.** For many applications, past workloads or historical data can be used to get an appropriate non-key sample.  
-    - 训练样本分布需要匹配或接近non-key的测试分布，对于许多应用程序，可以使用过去的工作负载或历史数据来获得适当的non-key示例
+    - 训练样本分布需要匹配或接近non-key的测试分布，对于许多应用程序，可以使用过去的工作负载或历史数据来获得适当的non-key示例 
     - 证明：Given sufficient data, we can determine an empirical false positive rate on a test set, and use that
       to predict future behavior. Under the assumption that the test set has the same distribution as future
       queries, standard Chernoff bounds provide that the empirical false positive rate will be close to the
@@ -201,7 +201,7 @@
 
 - Learned Model： 二分类问题
   - f(x)的选择：**RMI**、Lr、Plr、SVM、CART、CNN、RNN
-
+- 理论证明：FPR的评估？
 - LRF设计1：（**算法问题**）求f(x)在范围内的最大值
   - 合不合理，可不可求：需要数学公式推导/证明
 - LRF设计2：（**插值问题**）绘制Key-Score 的映射，判断范围内最高score是否大于t；例子: (K1， k2)
