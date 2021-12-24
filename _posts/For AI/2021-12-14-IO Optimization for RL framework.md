@@ -6,6 +6,8 @@
 - 时间：待定
 - 问题：待定
 
+[TOC]
+
 ## Background and Motivation
 
 ### Reinforcement Learning
@@ -248,7 +250,35 @@
 
 <img src="..\..\photos\paper\image-20211216142857385.png" alt="image-20211216142857385" style="zoom:50%;" />
 
-### 6. others
+### 
+
+### 6. RL Framework  
+
+
+
+12A20F 茶水间很吵
+
+#### 论文 6-1. Parallel Actors and Learners: A Framework for Generating Scalable RL Implementations
+- 问题：通常，RL算法的训练方式是通过与环境模拟器交互来迭代收集数据，并使用收集到的数据学习模型。然而，它需要相当多的时间来训练一个强化学习代理收敛。
+  - 数据收集速度受环境模拟器的复杂性限制，需要准确地表示真实世界的物理系统
+  - 一个典型的现实世界物理系统需要一个大的状态空间，这就需要收集大量的数据来成功地训练一个RL代理
+
+<img src="..\..\photos\paper\image-20211221162957675.png" alt="image-20211221162957675" style="zoom:33%;" />
+
+- 之前的工作通过部署可以同时收集数据的并行代理来解决这个问题
+- 在这些工作中，当增加并行性时，重放缓冲区管理成为实现高可伸缩性的限制因素
+
+
+
+- Prioritized Experience Replay
+
+
+
+- 我们提出了一种新的数据布局来存储求和树的节点，以最小化缓存丢失的数量。我们提出了延迟写入机制，以最小化重放缓冲区的各种操作的同步开销。
+
+
+
+### 7. others
 
 - SmartNIC，参考[《SmartNIC Survey》](./2021-12-17-SmartNIC Survey.md)
   - 现有网络带宽逐渐从10GbE增长到100GbE，但同时CPU计算能力增长逐渐缓慢，使得分布式系统的性能瓶颈逐渐从网络转向了CPU。CPU无法提供能够完全利用高速网络带宽的计算能力
@@ -267,7 +297,9 @@
 ## Design
 
 - 新：RL，架构设计？RL + DSM ？
+
 - 问题：性能？内存？
+
 - 星际争霸trace测试分析
   - 单机下没什么问题
   - 分布式下主要问题也是在传输和数据序列化上
@@ -278,6 +310,11 @@
   - 统一管理，资源分解，大容量，高性能，伸缩性
 
   <img src="..\..\photos\paper\design.png" alt="design" style="zoom:18%;" />
+  
+- 并发Replay Buffer  +
+
+  - 数据结构：跳表，B-tree，
+  - 内存不足：持久化
 
 
 
