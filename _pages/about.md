@@ -12,7 +12,7 @@ This is Kai Lu\'s personal website, including personal introduction, my projects
 
 ## About Me
 
-I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science and Technology(HUST). My major is storage systems and techniques.
+I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science and Technology. My major is storage systems and techniques.
 
 ## Interests and Projects
 
