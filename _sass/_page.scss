@@ -44,7 +44,7 @@
   }
 
   @include breakpoint($x-large) {
-    width: calc(100% - 10px);
+    width: calc(100% - 100px);
     padding-right: $right-sidebar-width;
   }
 
@@ -243,8 +243,7 @@
     }
 
     .page__lead {
-      max-width: $x-large;
-      // $medium;
+      max-width: $medium;
     }
 
     .page__title {
