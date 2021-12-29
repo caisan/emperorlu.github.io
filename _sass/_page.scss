@@ -103,11 +103,11 @@
       dd {
         margin-left: 1em;
         font-family: $sans-serif;
-        font-size: $type-size-6;
+        font-size: $type-size-5;
       }
     
       .small {
-        font-size: $type-size-6;
+        font-size: $type-size-5;
       }
     
       /* blockquote citations */
@@ -141,7 +141,7 @@
 
 .page__lead {
   font-family: $global-font-family;
-  font-size: $type-size-4;
+  font-size: $type-size-3;
 }
 
 .page__content {
@@ -152,7 +152,7 @@
   }
 
   p, li, dl {
-    font-size: 1em;
+    font-size: 0.8em;
   }
 
   /* paragraph indents */
@@ -189,11 +189,11 @@
   dd {
     margin-left: 1em;
     font-family: $sans-serif;
-    font-size: $type-size-6;
+    font-size: $type-size-4;
   }
 
   .small {
-    font-size: $type-size-6;
+    font-size: $type-size-4;
   }
 
   /* blockquote citations */
