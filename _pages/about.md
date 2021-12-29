@@ -19,9 +19,9 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * Key-value store: [Rocksdb](https://github.com/emperorlu/rocksdb), [TiKV](https://github.com/emperorlu/tikv), [Leveldb](https://github.com/emperorlu/leveldb)
 * Object storage: [Ceph](https://github.com/emperorlu/ceph)
 * AI for storage: [Learned-Rocksdb](https://github.com/emperorlu/Learned-Rocksdb)
-* system for AI: [FlashNeuron](https://github.com/emperorlu/FlashNeuron)
-* non-volatile memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
-* Load balancing with RL: [Park](https://github.com/emperorlu/park), [Replica-Placement](https://github.com/emperorlu/Replica-Placement), [Multi-agent Data Distribution](https://github.com/akharitonov/mdde)
+* System for AI: [DI-store](https://github.com/emperorlu/DI-store), [FlashNeuron](https://github.com/emperorlu/FlashNeuron)
+* Non-volatile Memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
+* System optimization with RL: [Park](https://github.com/emperorlu/park), [Replica-Placement](https://github.com/emperorlu/Replica-Placement), [Auto-Tuning-Ceph](https://github.com/emperorlu/Auto-Tuning-Ceph)
 * [My projects](../_posts/Projects/2021-01-01-project.md)
 
 

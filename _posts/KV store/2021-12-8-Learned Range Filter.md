@@ -1,7 +1,6 @@
 # Learned Range Filter
 
 > 玉可碎而不可改其白，竹可焚而不可毁其节 — 老关
->
 
 - LeRF: An Efficient Learned Range Filter for Key-Value Stores
 - AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
@@ -204,19 +203,43 @@
 - 理论证明：FPR的评估？
 - LRF设计1：（**算法问题**）求f(x)在范围内的最大值
   - 合不合理，可不可求：需要数学公式推导/证明
-- LRF设计2：（**插值问题**）绘制Key-Score 的映射，判断范围内最高score是否大于t；例子: (K1， k2)
-  - 样本选择：正向样本：keys in the SStable；负向样本：non-keys的生成？
-  - 区域最大值（极大值）：求导  
+
+- ~~LRF设计2：（**插值问题**）绘制Key-Score 的映射，判断范围内最高score是否大于t；例子: (K1， k2)~~
+  
+  - ~~样本选择：正向样本：keys in the SStable；负向样本：non-keys的生成？~~
+  
+  - ~~区域最大值（极大值）：求导~~ 
+  
+  - Spline插值 & 多项式回归
+  
+    <img src="..\..\photos\paper\spline.png" alt="spline" style="zoom: 50%;" /><img src="..\..\photos\paper\test.png" alt="test" style="zoom:50%;" />
 - 其他方法？
   - Kernel Density Estimation(KDE)拟合
+
+### 求极值
+
+- 方法1：scipy.optimize.minimize
+
+  <img src="..\..\photos\paper\image-20211228183343068.png" alt="image-20211228183343068" style="zoom: 50%;" />
+
+  <img src="..\..\photos\paper\image-20211228182703279.png" alt="image-20211228182703279" style="zoom: 67%;" />
+
+  <img src="..\..\photos\paper\image-20211228183244222.png" alt="image-20211228183244222" style="zoom:50%;" />![image-20211228182840354](..\..\photos\paper\image-20211228182840354.png)
+
+  
+
+- 方法2：使用神经网络求极值
+
+  迭代？
 
 ### In KV Store
 
 - 出发点
+  
   - 基于NVMe SSD，原来bloom filter成为瓶颈
   - 不支持范围查询
   - 数据感知
-
+  
 - 设计：每个SStable配备，只读数据符合Learned index需求
 
 - 模型和string处理， 能否结合partition learned bloom filter / Rocksdb partition bloom filtre？
