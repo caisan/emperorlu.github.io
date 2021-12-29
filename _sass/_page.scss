@@ -44,7 +44,7 @@
   }
 
   @include breakpoint($x-large) {
-    width: calc(100% - 100px);
+    width: calc(100% - 10px);
     padding-right: $right-sidebar-width;
   }
 
