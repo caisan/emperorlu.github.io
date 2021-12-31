@@ -185,7 +185,7 @@
   - Surf：构建新结构，插入新数据时索引重构开销较大，Succinct 结构性能低下
   - Chucky：不支持range query 
 - Learned Filter
-  - 优势：感知数据模式，精度高，体积小
+  - 优势：感知数据模式，精度高，体积小 
   - 劣势：不支持range query，模型精度随数据不定，不支持动态插入和更新
 
 
@@ -216,22 +216,6 @@
 - 其他方法？
   - Kernel Density Estimation(KDE)拟合
 
-### 求极值
-
-- 方法1：scipy.optimize.minimize
-
-  <img src="..\..\photos\paper\image-20211228183343068.png" alt="image-20211228183343068" style="zoom: 50%;" />
-
-  <img src="..\..\photos\paper\image-20211228182703279.png" alt="image-20211228182703279" style="zoom: 67%;" />
-
-  <img src="..\..\photos\paper\image-20211228183244222.png" alt="image-20211228183244222" style="zoom:50%;" />![image-20211228182840354](..\..\photos\paper\image-20211228182840354.png)
-
-  
-
-- 方法2：使用神经网络求极值
-
-  迭代？
-
 ### In KV Store
 
 - 出发点
@@ -255,6 +239,40 @@
 ### 测试
 
 - LBF的实现，尝试Lr、SVM、CNN、RNN (LSTM、GRU)、RMI
+
+  - URL数据，CNN，模型25M，精度0.972
+
+    <img src="..\..\photos\paper\image-20211231132349722.png" alt="image-20211231132349722" style="zoom:50%;" /><img src="..\..\photos\paper\image-20211228182703279.png" alt="image-20211228182703279" style="zoom: 50%;" />
+
+  - DB_bench数据
+
+    - X：0~10000，y~[0,1]，五千个0和五千个1
+    - lr：0.453；SVM：0.562；RF：0.503；CNN：0.693；LSTM：0.706；双向LSTM：0.834
+    - 双层双向LSTM，模型5.4M，精度0.997
+
+    <img src="..\..\photos\paper\image-20211231132318193.png" alt="image-20211231132318193" style="zoom:50%;" />
+
+### 求极值
+
+- 方法1：scipy.optimize.minimize
+
+  <img src="..\..\photos\paper\image-20211228183244222.png" alt="image-20211228183244222" style="zoom:50%;" />![image-20211228182840354](..\..\photos\paper\image-20211228182840354.png)
+
+  
+
+- 方法2：梯度下降法
+
+- 方法3：变成训练过程
+
+  - 神经网络训练过程就是求最值，loss最小
+  - 输入（x，y，z），参数（a，b，c），模型 ax + by + cz
+  - 训练过程：寻找使得 loss = |pre - y|最小的（a，b，c）
+  - 现在的情况：模型（a，b，c）是固定的，寻找使得 pre 最小的 （x，y，z）
+
+ 
+
+
+
 - 原论文代码测试
   - 模型：GRU
   - 数据集：网址数据
@@ -286,4 +304,8 @@ Test False positive rate:  0.010351505356869193
   - LBF用于Rocksdb + 其他数据集测试
 
 
+
+![image-20211231115802928](C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20211231115802928.png)
+
+![image-20211231115817176](C:\Users\lukai1\AppData\Roaming\Typora\typora-user-images\image-20211231115817176.png)
 
