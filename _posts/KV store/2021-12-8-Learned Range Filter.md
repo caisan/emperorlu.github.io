@@ -256,7 +256,7 @@
 
 - 方法1：scipy.optimize.minimize
 
-  <img src="..\..\photos\paper\image-20211228183244222.png" alt="image-20211228183244222" style="zoom:50%;" />![image-20211228182840354](..\..\photos\paper\image-20211228182840354.png)
+  <img src="..\..\photos\paper\image-20211228183244222.png" alt="image-20211228183244222" style="zoom:50%;" /><img src="..\..\photos\paper\image-20211228182840354.png" alt="image-20211228182840354" style="zoom: 50%;" /><img src="..\..\photos\paper\image-20211231160227827.png" alt="image-20211231160227827" style="zoom: 50%;" />
 
   
 
