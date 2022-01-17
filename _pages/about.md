@@ -26,7 +26,6 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 <!-- 
 * [My hobbies](../_posts/2021-02-01-兴趣爱好.md) -->
-
 ## Education
 
 * Ph.D. candidate in Storage Systems and Techniques, Wuhan National Laboratory for Optoelectronics(WNLO), Huazhong University of Science and Technology, China, 2018-now
