@@ -12,7 +12,7 @@ This is Kai Lu\'s personal website, including personal introduction, my projects
 
 ## About Me
 
-I\'m Kai Lu (鲁凯), currently studying for a Ph.D. at Huazhong University of Science and Technology. My major is storage systems and techniques.
+I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science and Technology. My major is storage systems and techniques.
 
 ## Interests and Projects
 
@@ -25,7 +25,7 @@ I\'m Kai Lu (鲁凯), currently studying for a Ph.D. at Huazhong University of S
 * [My projects](../_posts/Projects/2021-01-01-project.md)
 
 ## Year of Plan
-* [2022上半年论文计划(2月~10月)](../_posts/Projects/2022-1-17-2022上半年论文计划.md)
+* [First half year of plan](../_posts/Projects/2022-1-17-2022上半年论文计划.md)
 * IO optimization for reinforcement learning/large model, ACSTS (DAC), KV Scan and Filter
 
 <!-- 
