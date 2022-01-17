@@ -22,7 +22,6 @@ I\'m Kai Lu (鲁凯), currently studying for a Ph.D. at Huazhong University of S
 * System for AI: [DI-store](https://github.com/emperorlu/DI-store), [FlashNeuron](https://github.com/emperorlu/FlashNeuron), [DeepSpeed](https://github.com/emperorlu/DeepSpeed)
 * Non-volatile Memory(NVM): [Sprint-AEP](https://github.com/emperorlu/Sprint-AEP), [Geardb](https://github.com/emperorlu/GearDB)
 * System optimization with RL: [Park](https://github.com/emperorlu/park), [Replica-Placement](https://github.com/emperorlu/Replica-Placement), [Auto-Tuning-Ceph](https://github.com/emperorlu/Auto-Tuning-Ceph)
-
 * [My projects](../_posts/Projects/2021-01-01-project.md)
 
 ## Year of Plan
