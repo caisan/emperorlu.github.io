@@ -45,8 +45,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 * Ling Zhan, **Kai Lu**, Zhilong Cheng and Jiguang Wan. [RangeKV: An Efficient Key-Value Store Based on Hybrid DRAM-NVM-SSD Storage Structure](https://ieeexplore.ieee.org/document/9170492) (IEEE Access 2020)
 
-
-## Year of Plan
+## Year of Plan (2022)
 * [First half year of plan](../_posts/Projects/2022-1-17-2022上半年论文计划.md)
 * IO optimization for reinforcement learning/large model, ACSTS (DAC), KV Scan and Filter
 
