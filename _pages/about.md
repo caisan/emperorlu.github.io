@@ -25,7 +25,7 @@ I\'m Kai Lu (鲁凯), currently studying for a Ph.D. at Huazhong University of S
 * [My projects](../_posts/Projects/2021-01-01-project.md)
 
 ## Year of Plan
-* [2022上半年论文计划(2月~10月)](../_posts/Projects/2021-1-17-2022上半年论文计划.md)
+* [2022上半年论文计划(2月~10月)](../_posts/Projects/2022-1-17-2022上半年论文计划.md)
 * IO optimization for reinforcement learning/large model, ACSTS (DAC), KV Scan and Filter
 
 <!-- 
