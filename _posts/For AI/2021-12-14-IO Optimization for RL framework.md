@@ -254,10 +254,6 @@
 
 ### 6. RL Framework  
 
-
-
-12A20F 茶水间很吵
-
 #### 论文 6-1. Parallel Actors and Learners: A Framework for Generating Scalable RL Implementations
 - 问题：通常，RL算法的训练方式是通过与环境模拟器交互来迭代收集数据，并使用收集到的数据学习模型。然而，它需要相当多的时间来训练一个强化学习代理收敛。
   - 数据收集速度受环境模拟器的复杂性限制，需要准确地表示真实世界的物理系统
