@@ -6,7 +6,7 @@
 
 ## 上半年论文计划 （2月~10月）
 
-- 重点论文：面向强化学习/~~大模型~~的存储优化
+- 重点论文：面向强化学习/大模型的存储优化
   
   - 目标会议：**FAST (7月-9月)**
   
@@ -50,10 +50,12 @@
 - 优化方式：multiple/parallel  actors-learners，asynchronous actors-learners
   - 分布式RL：DQN，GORILA，A3C，Ape-X，IMPALA，...
     - Implicit Quantile Networks for Distributional Reinforcement Learning
-    - RLlib: Abstractions forDistributed Reinforcement Learning
+    - RLlib: Abstractions for Distributed Reinforcement Learning
     - IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures
 
 ##### 论文—RLlib
+
+- RLlib: Abstractions for Distributed Reinforcement Learning，ICML‘18，伯克利
 
 - RLlib是开源项目Ray的一部分，[RLlib官方文档](https://docs.ray.io/en/master/rllib.html)，实现了自顶向下分层控制的强化学习算法
 
@@ -77,8 +79,6 @@
 ##### 论文——Parallel Actors and Learners: A Framework for Generating Scalable RL Implementations
 
 
-
-
 #### 问题
 
 - 性能瓶颈
@@ -93,11 +93,7 @@
 
 - 基于A100 Ray/DI-engine训练测试：**doing**
 
-  
-
 - Replay buffer大小测试：**doing**
-
-
 
 ### Design
 
