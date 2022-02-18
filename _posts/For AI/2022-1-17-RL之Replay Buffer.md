@@ -47,17 +47,61 @@
 #### Scalable/Distributed RL
 
 - 并行算法：Ape-X，R2D2，IMPALA，A3C，G-A3C，SEED_RL，Agent57
-  - 环境的并行：这里我特指单机条件下使用wrapper对环境进行封装，使得可以同时运行很多环境，打batch使用网络进行inference。当然这个其实不怎么算大规模，不过一般的Research我觉得可能环境并行就差不多了，上升不到真正的大规模
+  - 环境的并行：这里特指单机条件下使用wrapper对环境进行封装，使得可以同时运行很多环境，打batch使用网络进行inference。当然这个其实不怎么算大规模，不过一般的Research我觉得可能环境并行就差不多了，上升不到真正的大规模
   - Actor的并行：这里主要是值Ape-X、A3C等Scalable RL算法中的Actor，其作用主要是在每个机器/线程上运行一个Actor同若干数量的envs进行交互来收集数据
   - Learner并行：这里主要是类似分布式深度学习，基于单机多卡或者多机多卡进行大batch的训练
 
 <img src="..\..\photos\paper\image-20211224145455235.png" alt="image-20211224145455235" style="zoom: 50%;" />
 
-<img src="..\..\photos\paper\image-20220217164727792.png" alt="image-20220217164727792" style="zoom:50%;" />
 
--  SEED RL: Scalable and Efficient Deep-RL with Accelerated Central Inference，ICLR 2020，google
+
+- （A3C）Asynchronous Methods for Deep Reinforcement Learning，ICML‘16，DeepMind
+
+  - 系列：A2C，G-A3C（GPU版A3C）
+
+- （Ape-X）Distributed Prioritized Experience Replay，ICLR ‘18，DeepMind
+
+- IMPALA: Scalable Distributed Deep-RL with Importance Weighted Actor-Learner Architectures，ICML’18，DeepMind
+
+  <img src="..\..\photos\paper\Impala.png" alt="img" style="zoom:50%;" />
+
+  
+
+- （R2D2）Recurrent Experience Replay in Distributed Reinforcement Learning，ICLR’19，DeepMind
+
+  - R2D2，Recurrent Replay Distributed DQN
+  - （R2D3）Recurrent Replay Distributed DQN from Demonstrations
+
+<img src="..\..\photos\paper\image-20220218114450277.png" alt="image-20220218114450277" style="zoom:50%;" />
+
+- Dota 2 with Large Scale Deep Reinforcement Learning，OpenAI 
+
+<img src="..\..\photos\paper\image-20220218113233302.png" alt="image-20220218113233302" style="zoom:50%;" />
+
+-  SEED RL: Scalable and Efficient Deep-RL with Accelerated Central Inference，ICLR 2020，Google Research
+
+  <img src="..\..\photos\paper\image-20220217164727792.png" alt="image-20220217164727792" style="zoom:50%;" />
+
   - Instead of a distributed replay buffer, we show that it is possible to keep the replay buffer on the learner with a straightforward flexible implementation. This reduces complexity by removing one type of job in the setup. It has the drawback of being limited by the memory of the learner but it was not a problem in our experiments by a large margin: a replay buffer of 105 trajectories of length 120 of 84 × 84 uncompressed grayscale observations (following R2D2’s hyperparameters) takes 85GBs of RAM, while Google Cloud machines can offer hundreds of GBs. However, nothing prevents the use of a distributed replay buffer together with SEED’s central inference, in cases where a much larger replay buffer is needed.
   - 不适用一个分布式的replay buffer，我们表明它是可能的，以一个简单的灵活的实现在learner 上保持replay buffer。 这通过在设置中删除一种作业类型来降低复杂性。 它的缺点learner 内存限制，但它不是一个问题。105trajectories 的replay buffer长度为120的84×84未压缩grayscale observations(根据R2D2 超参数)需要85 GB的内存，而谷歌云机器可以提供数以百计的GBs。 然而，在需要更大的重放缓冲区的情况下，没有什么可以阻止分布式replay buffer与SEED的中心推理一起使用。  
+
+- Sample Factory: Egocentric 3D Control from Pixels at 100000 FPS with Asynchronous Reinforcement Learning
+
+  - ICML’20，Intel，南加大
+
+<img src="..\..\photos\paper\image-20220218111223097.png" alt="image-20220218111223097" style="zoom:50%;" />
+
+- Acme: A Research Framework for Distributed Reinforcement Learning，DeepMind
+
+  <img src="..\..\photos\paper\image-20220218111619328.png" alt="image-20220218111619328" style="zoom:50%;" />
+
+- NGU && Agent57
+
+  - Never Give Up: Learning Directed Exploration Strategies， ICLR‘20，Deepmind 
+
+  - Agent57: Outperforming the Atari Human Benchmark，ICML‘20，DeepMind
+
+    
 
 #### 训练框架
 
