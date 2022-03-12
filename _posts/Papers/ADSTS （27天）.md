@@ -18,6 +18,12 @@
 
 
 
+- 问题1：人为选定少量参数进行调优
+- 问题2：强化学习算法的选择
+- 问题3：评估陷阱
+
+
+
 ## Design
 
 In this section, a new RL-based auto-tuning  scheme for distributed storage systems will be described. The whole ADSTS framework is introduced first. Then, parameter processing and tuning models are introduced  in detail.
@@ -61,6 +67,12 @@ entry [name,type,level,desc,default,tags,services,min,max]
 get the complete parameters set ，lacks attention from Ceph developers  
 
 
+
+准则1：根据
+
+准则2：为所有参数设定
+
+准则3：选择重要参数
 
 Parameter Pruning
 
