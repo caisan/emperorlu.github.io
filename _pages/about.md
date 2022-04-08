@@ -34,7 +34,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Publications
 
-* **Kai Lu**, et al. IO Optimization for RL framework (to be published) [Code](https://github.com/emperorlu/DI-store)
+* **Kai Lu**, et al. IO Optimization for RL/NLP framework (to be published) [RL](https://github.com/emperorlu/DI-store), [NLP](https://github.com/emperorlu/RETRO-pytorch)
 
 * **Kai Lu**, et al. ACSTS: Automatic Cloud Storage Tuning System via Parameter Identifcation and Reinforcement Learning (to be published) [Code](https://github.com/emperorlu/Auto-Tuning-Ceph)
 
