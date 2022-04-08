@@ -1,3 +1,8 @@
+---
+title: 'AI-IO优化思考'
+tags:
+  - System_For_AI
+---
 # IO Optimization for RL Framework
 
 > 那种勃勃生机、万物竞发的境界，犹在眼前 —— 老石
