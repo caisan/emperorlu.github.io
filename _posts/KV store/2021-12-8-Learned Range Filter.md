@@ -24,10 +24,29 @@
 
 ## Background and Motivation
 
-- Filter、
-- 
+- LSM-tree and Rocksdb
+- Range Query
+- Range Filter
+
+
+
+Rosetta, surf, 
+
+- System Stalls
 
 ## Design
+
+- Overall System Architecture
+
+- Learned Range Filter
+
+
+
+
+
+- Partition Scheduler
+
+- Implementation
 
 ## Implementation  
 
@@ -90,7 +109,7 @@
   - 与 SuRF-Hash 不同的是， SuRF-Real 在每个主键前缀的后面存储n 个主键位增加主键的区分度， 在降低误判率的同时提升了点查询和范围查询的性能， 但是由于有些主键的前缀区别较小， SuRF-Real 的误判率不如 SuRF-Hash低
   - SuRF-Mixed 结合了 SuRF-Hash 和SuRF-Real 的优点， 能够有效地支持点查询和范围查询 
 
-- 测试 
+- 测试
 
   - 代码：https://github.com/efcient/SuRF  
 
@@ -357,7 +376,7 @@ num0:  10509  num1:  199281
 
 num-1:  607  num0:  169174  num1:  10012
 
-LR模型
+LR模型 
 
 num0:  10504  num1:  199286
 num-1:  0  num0:  209785  num1:  5
