@@ -25,6 +25,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 * [My projects](../_posts/Projects/2021-01-01-project.md)
 
 <!-- 
+
 * [My hobbies](../_posts/2021-02-01-兴趣爱好.md) -->
 ## Education
 
@@ -34,9 +35,9 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 ## Publications
 
-* **Kai Lu**, et al. IO Optimization for RL/NLP framework (to be published) [RL](https://github.com/emperorlu/DI-store), [NLP](https://github.com/emperorlu/RETRO-pytorch)
+<!-- * **Kai Lu**, et al. IO Optimization for RL/NLP framework (to be published) [RL](https://github.com/emperorlu/DI-store), [NLP](https://github.com/emperorlu/RETRO-pytorch) -->
 
-* **Kai Lu**, et al. ACSTS: Automatic Cloud Storage Tuning System via Parameter Identifcation and Reinforcement Learning (to be published) [Code](https://github.com/emperorlu/Auto-Tuning-Ceph)
+* **Kai Lu**, et al. ADSTS: Automatic Distributed Storage Tuning System Using Deep Reinforcement Learning (to be published) [Code](https://github.com/emperorlu/Auto-Tuning-Ceph)
 
 * **Kai Lu**, et al. RLRP: High-Efficient Data Placement with Reinforcement Learning for Modern Distributed Storage Systems (IPDPS 2022, CCF B) [Code](https://github.com/emperorlu/Replica-Placement)
 

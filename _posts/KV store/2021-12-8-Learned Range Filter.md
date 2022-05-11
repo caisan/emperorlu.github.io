@@ -2,11 +2,48 @@
 
 > 玉可碎而不可改其白，竹可焚而不可毁其节 — 老关
 
-- LeRF: An Efficient Learned Range Filter for Key-Value Stores
-- AegisKV:  A Range-query Optimized LSM-tree Based KV Store via XX
+- LeRF: A Learned Range Filter for Key-Value Stores
+- AegisKV:  A Range-query Optimized Key-Value Store via Learned Range Filter and  Efficient Partitioning
+- AegisKV: Optimizing Range-query for key-value store optimization
 - 投稿目标
-  - filter单独投一篇：偏机器学习投NeurIPS  / 偏kv投系统会议
+  - ~~filter单独投一篇：偏机器学习投NeurIPS  / 偏kv投系统会议~~
   - 范围优化kv：引用上篇；删除优化；异步scan
+
+
+
+## Abstract
+
+
+
+## Introduce
+
+- 范围查询性能问题
+  - 
+- 大规模删除导致的
+  - 
+
+## Background and Motivation
+
+- Filter、
+- 
+
+## Design
+
+## Implementation  
+
+
+
+## Evaluation
+
+
+
+## Related Work
+
+
+
+## Conclusion  
+
+
 
 ## 相关文章
 
@@ -155,6 +192,9 @@
 - 除了使用一个后置布隆过滤器外，三明治（Sandwiching）结构还使用了一个前置布隆过滤器
   - 由于后置布隆过滤器的大小与通过RNN模型的假阴性元素数量呈正相关，所以通过使用前置布隆过滤器消除更多的假阴性, 能够降低后置布隆过滤器的空间代价
   - 三明治结构的另一个优点是它与Kraska等人提出的学习布隆过滤器结构相比具有更强的鲁棒性。如果用于学习布隆过滤器的训练集和测试集具有不同的数据分布，那么RNN模型的FNR可能远远大于预期。增加一个前置布隆过滤器能够缓解这个问题，因为它预先过滤了一部分假阴性元素
+  
+  
+  
 
 ### 论文2-2 Adaptive Learned Bloom Filter (Ada-BF) 
 
@@ -190,6 +230,8 @@
 
 
 
+
+
 ## 设计与测试
 
 - Learned + Range Filter两则结合
@@ -199,11 +241,13 @@
 <img src="..\..\photos\Scan\image-20211203122448516.png" alt="image-20211203122448516" style="zoom:80%;" />            <img src="..\..\photos\Scan\Scan_filter.png" alt="Scan_filter" style="zoom: 25%;" />                  
 
 - Learned Model： 二分类问题
+  
   - f(x)的选择：**RMI**、Lr、Plr、SVM、CART、CNN、RNN
 - 理论证明：FPR的评估？
 - LRF设计1：（**算法问题**）求f(x)在范围内的最大值
-  - 合不合理，可不可求：需要数学公式推导/证明
-
+  
+- 合不合理，可不可求：需要数学公式推导/证明
+  
 - ~~LRF设计2：（**插值问题**）绘制Key-Score 的映射，判断范围内最高score是否大于t；例子: (K1， k2)~~
   
   - ~~样本选择：正向样本：keys in the SStable；负向样本：non-keys的生成？~~
@@ -214,6 +258,7 @@
   
     <img src="..\..\photos\paper\spline.png" alt="spline" style="zoom: 50%;" /><img src="..\..\photos\paper\test.png" alt="test" style="zoom:50%;" />
 - 其他方法？
+  
   - Kernel Density Estimation(KDE)拟合
 
 ### In KV Store
@@ -233,6 +278,8 @@
   <img src="..\..\photos\Scan\string code.png" alt="string code" style="zoom: 33%;" />
 
 - Range Filter问题：合并开销优化， 长范围查询优化
+
+- Key-range partition and garbage collection
 
   
 
@@ -269,9 +316,7 @@
   - 训练过程：寻找使得 loss = |pre - y|最小的（a，b，c）
   - 现在的情况：模型（a，b，c）是固定的，寻找使得 pre 最小的 （x，y，z）
 
- 
-
-
+ <img src="..\..\photos\Scan\image-20211209152110027.png" alt="image-20211209152110027" style="zoom: 50%;" />
 
 - 原论文代码测试
   - 模型：GRU
@@ -291,7 +336,31 @@ Test False positive rate:  0.010351505356869193
 
 ```
 
-<img src="..\..\photos\Scan\image-20211209152110027.png" alt="image-20211209152110027" style="zoom: 50%;" />
+
+
+### 范围取样
+
+- 采蘑菇问题
+  - 在一维度坐标[0, N]上按照函数f(x)位置种下k个蘑菇，坐标分别为P0,P1,...,Pk，其中Pi = f(i)；
+
+  - 一个农民在(a, b)范围内采蘑菇，a与b任意取值，0<= a < b <= N，需要判断该农民能否采到蘑菇；
+
+  - 即如何构建布尔函数g(a,b)，若g = 1，表示可以采到蘑菇；g = 0，不能采到。
+
+<img src="..\..\photos\Scan\mogu.png" alt="mogu" style="zoom: 33%;" />
+
+数据：num0:  1703  num1:  178090
+
+num0:  10509  num1:  199281
+
+预测：num-1:  0  num0:  179128  num1:  665
+
+num-1:  607  num0:  169174  num1:  10012
+
+LR模型
+
+num0:  10504  num1:  199286
+num-1:  0  num0:  209785  num1:  5
 
 ### Next
 
