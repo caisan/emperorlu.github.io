@@ -69,9 +69,12 @@
 - Curve
 
   - 关于S的设定
-  - 总恢复带宽 = scatter width * 单个copyset的恢复带宽
-  - scatter width = 总的恢复带宽 / 单个copyset的恢复带宽  =  （数据容量 / 期望恢复时间）/ 单个copyset的恢复带宽
-  - 假设节点每个盘4T，恢复时间3600s，单个copyset的恢复带宽为10MB/s，那么S = (4 * 1024 * 1024) / 3600 / 10 = 116.51，这是scatter width的下限
+    - 总恢复带宽 = scatter width * 单个copyset的恢复带宽
+    - scatter width = 总的恢复带宽 / 单个copyset的恢复带宽  =  （数据容量 / 期望恢复时间）/ 单个copyset的恢复带宽
+    - 假设节点每个盘4T，恢复时间3600s，单个copyset的恢复带宽为10MB/s，那么S = (4 * 1024 * 1024) / 3600 / 10 = 116.51，这是scatter width的下限
+  - 关于扩容
+    - 物理池physicalPool是扩容的基本单元，也就是一次扩容一个physicalPool。物理池内包含若干台服务器，每台服务器上具有若干个ChunkServer节点
+    -  logicalPool：在物理池之上，会创建logicalPool和copyset。copyset属于逻辑池，每个逻辑池一开始创建固定数量的copyset。copyset Id 在逻辑池内唯一，逻辑池Id + copyset Id 唯一确定一个copyset
 
 - TiKV
 
