@@ -1,4 +1,11 @@
-# Copyset in Ceph
+---
+title:  "Ceph-数据丢失研究"
+tags: 
+  - Object_Storage
+  - Load_Balancing
+---
+
+<!-- # Copyset in Ceph -->
 
 > 青山无数，归去又还秋暮，算恁地光阴，能来得几度 —— 老俞
 
@@ -6,7 +13,6 @@
 
 - 目标2：灵活，可拓展性强，能处理数据扩容/迁移
 
-  
 
 ## 数据丢失问题
 
@@ -58,7 +64,7 @@
   1. 所有节点开始的 scatter width 是 0，也就是没有属于任何 Copysets
   2. 创建一个 Copysets，选择最小 scatter width 的 R 个节点加进去
   3. 重复上面的过程，直到所有的节点的 scatter width 至少是 S
-- Tiered Replication 里面也有 primary 和 backup 节点的区分，通常两个副本会放在 primary 节点里面，而第三个副本则会放到 backup 节点里面
+- Tiered Replication 里面也有 primary 和 backup 节点的区分，通常两个副本会放在 primary 节点里面，而第三个副本则会放backup 节点里面
 - 对于集群的动态更新，譬如新加入一个节点，就直接按照上面的算法，将这个节点加入到不同的 Copysets 里面，直到这个新加入的节点的 scatter width 为 S
 - 对于删除节点，一个简单的做法就是将包含这个删除节点的 Copysets 干掉，而在这些 Copysets 里面的其他正常节点的 scatter with 也会减少，然后会创建新的 Copysets 替换老的。在老的 Copysets 里面的正常副本可能会重新复制到其他节点上面
 
