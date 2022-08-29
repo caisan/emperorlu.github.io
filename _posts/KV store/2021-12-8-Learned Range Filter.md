@@ -3538,3 +3538,159 @@ Interval stall: 00:00:0.000 H:M:S, 0.0 percent
 
 I/O count: 268926
 
+SuRF, zipfian
+Build time = 24.2963
+Throughput = 1.98383
+positives = 7105118
+true positives = 7002747
+false positives = 102371
+true negatives = 2894883
+count = 0
+False Positive Rate = 0.0341549
+Memory = 66377919
+
+SuRFHash, zipfian
+Build time = 24.679
+Throughput = 2.01478
+positives = 7105118
+true positives = 7002747
+false positives = 102371
+true negatives = 2894883
+count = 0
+False Positive Rate = 0.0341549
+Memory = 91377919
+
+SuRFReal, zipfian
+Build time = 24.3743
+Throughput = 1.92494
+positives = 7011945
+true positives = 7002747
+false positives = 9198
+true negatives = 2988056
+count = 0
+False Positive Rate = 0.00306881
+Memory = 91377919
+
+SuRF, uniform
+Build time = 23.896
+Throughput = 1.86278
+positives = 6815614
+true positives = 6702050
+false positives = 113564
+true negatives = 3184387
+count = 0
+False Positive Rate = 0.0344347
+Memory = 66377919
+
+SuRFHash, uniform
+Build time = 24.3468
+Throughput = 1.87323
+positives = 6815614
+true positives = 6702050
+false positives = 113564
+true negatives = 3184387
+count = 0
+False Positive Rate = 0.0344347
+Memory = 91377919
+
+SuRFReal, uniform
+Build time = 24.3376
+Throughput = 1.70486
+positives = 6713106
+true positives = 6702050
+false positives = 11056
+true negatives = 3286895
+count = 0
+False Positive Rate = 0.00335238
+Memory = 91377919
+
+SuRF, latest
+Build time = 24.1038
+Throughput = 2.01029
+positives = 6799946
+true positives = 6618394
+false positives = 181552
+true negatives = 3200055
+count = 0
+False Positive Rate = 0.0536881
+Memory = 66377919
+
+SuRFHash, latest
+Build time = 24.6203
+Throughput = 1.99807
+positives = 6799946
+true positives = 6618394
+false positives = 181552
+true negatives = 3200055
+count = 0
+False Positive Rate = 0.0536881
+Memory = 72627927
+
+SuRFReal, latest
+Build time = 24.5668
+Throughput = 1.95996
+positives = 6753584
+true positives = 6618394
+false positives = 135190
+true negatives = 3246417
+count = 0
+False Positive Rate = 0.039978
+Memory = 72627927
+
+
+
+
+
+2.87 23.05
+
+7.31 18.67
+
+echo 'Bloom Filter, zip fian'
+
+../build/bench/workload Bloom 1 mixed 50 0 randint point zipfian
+
+ echo 'SuRFHash, zipfian'
+ ../build/bench/workload SuRFHash 4 mixed 50 0 randint point zipfian
+
+echo 'SuRFReal, zipfian'
+../build/bench/workload SuRFReal 4 mixed 50 0 randint point zipfian
+
+echo 'SuRFMixed, zipfian'
+../build/bench/workload SuRFMixed 2 mixed 50 0 randint mix zipfian
+
+False Positive Rate (%)
+
+echo 'Bloom Filter, uniform'
+
+../build/bench/workload Bloom 1 mixed 50 0 randint point uniform
+
+ echo 'SuRFHash, uniform'
+ ../build/bench/workload SuRFHash 4 mixed 50 0 randint point uniform
+
+echo 'SuRFReal, uniform'
+../build/bench/workload SuRFReal 4 mixed 50 0 randint point uniform
+
+echo 'SuRFMixed, uniform'
+../build/bench/workload SuRFMixed 2 mixed 50 0 randint mix uniform
+
+
+
+echo 'Bloom Filter, latest'
+
+../build/bench/workload Bloom 1 mixed 50 0 randint point latest
+
+ echo 'SuRFHash, latest'
+ ../build/bench/workload SuRFHash 4 mixed 50 0 randint point latest
+
+echo 'SuRFReal, latest'
+../build/bench/workload SuRFReal 4 mixed 50 0 randint point latest
+
+echo 'SuRFMixed, latest'
+../build/bench/workload SuRFMixed 2 mixed 50 0 randint mix latest
+
+
+
+Range queries are very inefficient in LSM-tree based KV stores due to the leveled structure of the LSM-tree. Range filters have become popular because they can effectively reduce IO costs and improve range-query performance. However, in modern storage environments, on the one hand, existing range filters have become a performance bottleneck when using modern storage devices with high bandwidth and low latency. On the other hand, data migrations and mass deletes are common, which severely impact range-query performance (also referred as the large-scale delete problem). In this paper, AegisKV is proposed to improve the range-query performance of LSM-tree based KV stores. A learned range filter is first designed to speed up file filtering, reducing extra IOs. Also, a high-efficient partition strategy is proposed to solve the large-scale delete problem. Besides, asynchronous query design is adopted, and SPDK is supported for high concurrency and low latency. AegisKV is implemented on RocksDB. The evaluation results indicate that compared with RocksDB, the range-query performance of AegisKV is improved by 4× to 7× without loss of write performance and AegisKV provides stable query performance even when a large number of deletes or migrations occur.  
+
+
+
