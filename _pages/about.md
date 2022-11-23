@@ -39,7 +39,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 * **Kai Lu**, et al. ADSTS: Automatic Distributed Storage Tuning System Using Deep Reinforcement Learning (ICPP 2022, CCF B) [Code coming soon](https://github.com/emperorlu/Auto-Tuning-Ceph)
 
-* **Kai Lu**, et al. RLRP: High-Efficient Data Placement with Reinforcement Learning for Modern Distributed Storage Systems (IPDPS 2022, CCF B) [Code](https://github.com/emperorlu/Replica-Placement)
+* **Kai Lu**, et al. [RLRP: High-Efficient Data Placement with Reinforcement Learning for Modern Distributed Storage Systems](https://ieeexplore.ieee.org/document/9820675/) (IPDPS 2022, CCF B) [Code](https://github.com/emperorlu/Replica-Placement)
 
 * **Kai Lu**, et al. [TridentKV: A Read-Optimized LSM-tree Based KV Store via Adaptive Indexing and Space-Efficient Partitioning](https://ieeexplore.ieee.org/document/9563237) (TPDS, CCF A) [Code](https://github.com/emperorlu/Learned-Rocksdb)
 
