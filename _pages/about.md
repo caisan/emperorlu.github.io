@@ -39,7 +39,7 @@ I\'m Kai Lu, currently studying for a Ph.D. at Huazhong University of Science an
 
 * Liang Wang, **Kai Lu**(co-primary author), et al. Shoggoth: Towards Efficient Edge-Cloud Collaborative Real-Time Video Inference via Adaptive Online Learning (DAC 2023, CCF A) *Code coming soon*
 
-* **Kai Lu**, et al. ADSTS: Automatic Distributed Storage Tuning System Using Deep Reinforcement Learning (ICPP 2022, CCF B) [Code coming soon](https://github.com/emperorlu/Auto-Tuning-Ceph)
+* **Kai Lu**, et al. [ADSTS: Automatic Distributed Storage Tuning System Using Deep Reinforcement Learning](https://dl.acm.org/doi/abs/10.1145/3545008.3545012) (ICPP 2022, CCF B) [Code coming soon](https://github.com/emperorlu/Auto-Tuning-Ceph)
 
 * **Kai Lu**, et al. [RLRP: High-Efficient Data Placement with Reinforcement Learning for Modern Distributed Storage Systems](https://ieeexplore.ieee.org/document/9820675/) (IPDPS 2022, CCF B) [Code](https://github.com/emperorlu/Replica-Placement)
 
